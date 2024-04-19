@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.custom-border{
+  outline: 1.5px solid #011629;
+  outline-offset: -1px;
+  box-sizing: border-box;
+}
+
+.border-bottom{
+  border-bottom: 1.5px solid #011629;
+}
+
+.grayscale {
+  filter: grayscale(100%); 
+  transition: filter 0.5s ease; 
+}
+
+.grayscale:hover {
+  filter: none; 
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+ display: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  display: none;
+  /* background-color: transparent; */
+}

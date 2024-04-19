@@ -1,0 +1,353 @@
+[
+  {
+    "id": 1,
+    "imgPath": "/assets/images/girl4.png",
+    "title": "Full Stack C# ASP.NET Core MVC Application.",
+    "enrolled": "150+",
+    "lectures": "180+",
+    "level": "Intermediate",
+    "price": "NGN 750,000",
+    "description": "This course covers full-stack web development using C# ASP.NET Core MVC framework. You will learn how to build modern web applications using C# for the backend and ASP.NET Core MVC for the frontend. The course covers topics such as database integration, authentication, authorization, RESTful APIs, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "C#",
+      "ASP.NET Core MVC",
+      "Entity Framework Core",
+      "Database Integration",
+      "Authentication and Authorization",
+      "RESTful APIs",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building modern web applications using C# ASP.NET Core MVC framework.",
+      "Learn how to integrate databases, implement authentication and authorization, and create RESTful APIs using C#.",
+      "Understand deployment strategies and best practices for deploying C# ASP.NET Core MVC applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in C# ASP.NET Core environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "C# Developers",
+      "ASP.NET Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with C# ASP.NET Core",
+      "Beginners and intermediate developers interested in C# web development"
+    ]
+  },
+  {
+    "id": 2,
+    "imgPath": "/assets/images/girl2.png",
+    "title": "Full Stack Web Developer with Python.",
+    "enrolled": "150+",
+    "lectures": "200+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Python course provides comprehensive training for becoming a full-stack web developer using Python. You will learn how to build dynamic web applications using Python frameworks such as Django and Flask for the backend, along with HTML, CSS, and JavaScript for the frontend. The course covers database integration, RESTful APIs, user authentication, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Python",
+      "Django",
+      "Flask",
+      "Database Integration",
+      "RESTful APIs",
+      "User Authentication",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building dynamic web applications using Python frameworks such as Django and Flask.",
+      "Learn how to integrate databases, create RESTful APIs, and implement user authentication in your web applications.",
+      "Understand deployment strategies and best practices for deploying Python web applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in Python-based environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "Python Developers",
+      "Web Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with Python",
+      "Beginners and intermediate developers interested in Python web development"
+    ]
+  },
+  {
+    "id": 3,
+    "imgPath": "/assets/images/girl3.png",
+    "title": "Full Stack Web Developer with JavaScript / Node.js.",
+    "enrolled": "150+",
+    "lectures": "150+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Node.js course provides an introduction to web application development by way of JavaScript and the node.js environment. The delegates will learn the basics of server-side web development using the Node.Js alongside some other web development tools. The Node.js course introduces students to models of software development that can apply to any web development environment, including the application server (node.js), Model View Controller (MVC) frameworks using Node.Js. The course includes setting up a node.js environment, building web APPs and full-stack JavaScript applications, and following good application development practices.\n\nThis Node.js training also teaches you to build a production-ready Node.js JSON API. The course features relevant software aspects to help you gain hands-on experience in developing the backend in Node.js.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Node.js",
+      "Front End vs. Back End Development",
+      "Databases",
+      "Model, View, Template (MVT) structure",
+      "Git and Git Bash"
+    ],
+    "learningOutcomes": [
+      "Master the art of creating websites that adapt seamlessly to different screen sizes and devices, ensuring an optimal user experience.",
+      "Learn about websockets and real-time communication to enable live updates and interactivity in your applications.",
+      "Gain insights into popular frontend frameworks like React and Vue.js, enabling you to build robust and interactive web applications.",
+      "Successfully deploy frontend applications to various hosting platforms and understand the deployment process.",
+      "Learn how to communicate with server-side APIs to fetch and display data on your web applications.",
+      "Acquire insights into industry standards, coding conventions, and code review processes to ensure code quality and collaboration.",
+      "Explore techniques to enhance website performance, reduce loading times, and improve user experience.",
+      "Prepare for frontend engineering job interviews by honing your skills and building a strong portfolio of projects."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "NodeJS Developers",
+      "Senior Developers - React, Node",
+      "Beginners and newbies aspiring for a career in Web Development",
+      "Node/JavaScript Developers",
+      "Application Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn Node JS and JavaScript",
+      "Solution Architects & Technical Architects",
+      "Engineering Managers",
+      "IT Developers & App Programmers"
+    ]
+  },
+  {
+    "id": 5,
+    "imgPath": "/assets/images/girl4.png",
+    "title": "Full Stack C# ASP.NET Core MVC Application.",
+    "enrolled": "150+",
+    "lectures": "180+",
+    "level": "Intermediate",
+    "price": "NGN 750,000",
+    "description": "This course covers full-stack web development using C# ASP.NET Core MVC framework. You will learn how to build modern web applications using C# for the backend and ASP.NET Core MVC for the frontend. The course covers topics such as database integration, authentication, authorization, RESTful APIs, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "C#",
+      "ASP.NET Core MVC",
+      "Entity Framework Core",
+      "Database Integration",
+      "Authentication and Authorization",
+      "RESTful APIs",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building modern web applications using C# ASP.NET Core MVC framework.",
+      "Learn how to integrate databases, implement authentication and authorization, and create RESTful APIs using C#.",
+      "Understand deployment strategies and best practices for deploying C# ASP.NET Core MVC applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in C# ASP.NET Core environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "C# Developers",
+      "ASP.NET Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with C# ASP.NET Core",
+      "Beginners and intermediate developers interested in C# web development"
+    ]
+  },
+  {
+    "id": 4,
+    "imgPath": "/assets/images/girl2.png",
+    "title": "Full Stack Web Developer with Python.",
+    "enrolled": "150+",
+    "lectures": "200+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Python course provides comprehensive training for becoming a full-stack web developer using Python. You will learn how to build dynamic web applications using Python frameworks such as Django and Flask for the backend, along with HTML, CSS, and JavaScript for the frontend. The course covers database integration, RESTful APIs, user authentication, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Python",
+      "Django",
+      "Flask",
+      "Database Integration",
+      "RESTful APIs",
+      "User Authentication",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building dynamic web applications using Python frameworks such as Django and Flask.",
+      "Learn how to integrate databases, create RESTful APIs, and implement user authentication in your web applications.",
+      "Understand deployment strategies and best practices for deploying Python web applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in Python-based environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "Python Developers",
+      "Web Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with Python",
+      "Beginners and intermediate developers interested in Python web development"
+    ]
+  },
+  {
+    "id": 6,
+    "imgPath": "/assets/images/girl3.png",
+    "title": "Full Stack Web Developer with JavaScript / Node.js.",
+    "enrolled": "150+",
+    "lectures": "150+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Node.js course provides an introduction to web application development by way of JavaScript and the node.js environment. The delegates will learn the basics of server-side web development using the Node.Js alongside some other web development tools. The Node.js course introduces students to models of software development that can apply to any web development environment, including the application server (node.js), Model View Controller (MVC) frameworks using Node.Js. The course includes setting up a node.js environment, building web APPs and full-stack JavaScript applications, and following good application development practices.\n\nThis Node.js training also teaches you to build a production-ready Node.js JSON API. The course features relevant software aspects to help you gain hands-on experience in developing the backend in Node.js.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Node.js",
+      "Front End vs. Back End Development",
+      "Databases",
+      "Model, View, Template (MVT) structure",
+      "Git and Git Bash"
+    ],
+    "learningOutcomes": [
+      "Master the art of creating websites that adapt seamlessly to different screen sizes and devices, ensuring an optimal user experience.",
+      "Learn about websockets and real-time communication to enable live updates and interactivity in your applications.",
+      "Gain insights into popular frontend frameworks like React and Vue.js, enabling you to build robust and interactive web applications.",
+      "Successfully deploy frontend applications to various hosting platforms and understand the deployment process.",
+      "Learn how to communicate with server-side APIs to fetch and display data on your web applications.",
+      "Acquire insights into industry standards, coding conventions, and code review processes to ensure code quality and collaboration.",
+      "Explore techniques to enhance website performance, reduce loading times, and improve user experience.",
+      "Prepare for frontend engineering job interviews by honing your skills and building a strong portfolio of projects."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "NodeJS Developers",
+      "Senior Developers - React, Node",
+      "Beginners and newbies aspiring for a career in Web Development",
+      "Node/JavaScript Developers",
+      "Application Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn Node JS and JavaScript",
+      "Solution Architects & Technical Architects",
+      "Engineering Managers",
+      "IT Developers & App Programmers"
+    ]
+  },
+  {
+    "id": 7,
+    "imgPath": "/assets/images/girl4.png",
+    "title": "Full Stack C# ASP.NET Core MVC Application.",
+    "enrolled": "150+",
+    "lectures": "180+",
+    "level": "Intermediate",
+    "price": "NGN 750,000",
+    "description": "This course covers full-stack web development using C# ASP.NET Core MVC framework. You will learn how to build modern web applications using C# for the backend and ASP.NET Core MVC for the frontend. The course covers topics such as database integration, authentication, authorization, RESTful APIs, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "C#",
+      "ASP.NET Core MVC",
+      "Entity Framework Core",
+      "Database Integration",
+      "Authentication and Authorization",
+      "RESTful APIs",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building modern web applications using C# ASP.NET Core MVC framework.",
+      "Learn how to integrate databases, implement authentication and authorization, and create RESTful APIs using C#.",
+      "Understand deployment strategies and best practices for deploying C# ASP.NET Core MVC applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in C# ASP.NET Core environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "C# Developers",
+      "ASP.NET Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with C# ASP.NET Core",
+      "Beginners and intermediate developers interested in C# web development"
+    ]
+  },
+  {
+    "id": 8,
+    "imgPath": "/assets/images/girl2.png",
+    "title": "Full Stack Web Developer with Python.",
+    "enrolled": "150+",
+    "lectures": "200+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Python course provides comprehensive training for becoming a full-stack web developer using Python. You will learn how to build dynamic web applications using Python frameworks such as Django and Flask for the backend, along with HTML, CSS, and JavaScript for the frontend. The course covers database integration, RESTful APIs, user authentication, and deployment strategies.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Python",
+      "Django",
+      "Flask",
+      "Database Integration",
+      "RESTful APIs",
+      "User Authentication",
+      "Deployment Strategies"
+    ],
+    "learningOutcomes": [
+      "Master the art of building dynamic web applications using Python frameworks such as Django and Flask.",
+      "Learn how to integrate databases, create RESTful APIs, and implement user authentication in your web applications.",
+      "Understand deployment strategies and best practices for deploying Python web applications to production environments.",
+      "Gain practical experience through hands-on projects and exercises.",
+      "Prepare for full-stack web developer roles in Python-based environments."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "Python Developers",
+      "Web Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn full-stack web development with Python",
+      "Beginners and intermediate developers interested in Python web development"
+    ]
+  },
+  {
+    "id": 9,
+    "imgPath": "/assets/images/girl3.png",
+    "title": "Full Stack Web Developer with JavaScript / Node.js.",
+    "enrolled": "150+",
+    "lectures": "150+",
+    "level": "Advanced",
+    "price": "NGN 750,000",
+    "description": "This Node.js course provides an introduction to web application development by way of JavaScript and the node.js environment. The delegates will learn the basics of server-side web development using the Node.Js alongside some other web development tools. The Node.js course introduces students to models of software development that can apply to any web development environment, including the application server (node.js), Model View Controller (MVC) frameworks using Node.Js. The course includes setting up a node.js environment, building web APPs and full-stack JavaScript applications, and following good application development practices.\n\nThis Node.js training also teaches you to build a production-ready Node.js JSON API. The course features relevant software aspects to help you gain hands-on experience in developing the backend in Node.js.",
+    "topicsCovered": [
+      "HTML/CSS",
+      "Responsive Web Design/Bootstrap",
+      "JavaScript",
+      "Node.js",
+      "Front End vs. Back End Development",
+      "Databases",
+      "Model, View, Template (MVT) structure",
+      "Git and Git Bash"
+    ],
+    "learningOutcomes": [
+      "Master the art of creating websites that adapt seamlessly to different screen sizes and devices, ensuring an optimal user experience.",
+      "Learn about websockets and real-time communication to enable live updates and interactivity in your applications.",
+      "Gain insights into popular frontend frameworks like React and Vue.js, enabling you to build robust and interactive web applications.",
+      "Successfully deploy frontend applications to various hosting platforms and understand the deployment process.",
+      "Learn how to communicate with server-side APIs to fetch and display data on your web applications.",
+      "Acquire insights into industry standards, coding conventions, and code review processes to ensure code quality and collaboration.",
+      "Explore techniques to enhance website performance, reduce loading times, and improve user experience.",
+      "Prepare for frontend engineering job interviews by honing your skills and building a strong portfolio of projects."
+    ],
+    "targetAudience": [
+      "Full Stack Developers",
+      "NodeJS Developers",
+      "Senior Developers - React, Node",
+      "Beginners and newbies aspiring for a career in Web Development",
+      "Node/JavaScript Developers",
+      "Application Developers",
+      "Software Engineers & Programmers",
+      "Anyone wishing to learn Node JS and JavaScript",
+      "Solution Architects & Technical Architects",
+      "Engineering Managers",
+      "IT Developers & App Programmers"
+    ]
+  }
+]
