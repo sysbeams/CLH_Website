@@ -14,14 +14,16 @@ const Heading = () => {
                         <span>Collaborate.</span>
                         <span className="text-secondary">Validate.</span>
                     </div>
-                    <span className="text-[18px] md:text-[20px] leading-[28px] font-[500]">Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. </span>
+                    <span className="text-[18px] md:text-[20px] leading-[28px] font-[500]">Become an industry ready software developer in a few months.
+                        Code Learners Hub gives the best training and hand-on experience that you need to fit into the evolving and competitive global tech market.
+                    </span>
                     <div className="flex gap-12">
                         <div className="flex flex-col font-[500]">
-                            <span className="text-[36px]">15k+</span>
+                            <span className="text-[36px]">400+</span>
                             <span className="text-[20px]">Students taught</span>
                         </div>
                         <div className="flex flex-col font-[500]">
-                            <span className="text-[36px]">12+</span>
+                            <span className="text-[36px]">6+</span>
                             <span className="text-[20px]">Years of experience</span>
                         </div>
                     </div>

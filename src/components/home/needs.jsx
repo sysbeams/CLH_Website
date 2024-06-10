@@ -5,18 +5,18 @@ const Needs = () => {
     const needs = [
         {
             imgPath: "/assets/images/man2.png",
-            title: "The very best industry tutors.",
-            desc: "Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. ",
+            title: "Industry Experienced Tutors",
+            desc: "Become an industry ready software developer in a few months. Code Learners Hub gives the best training and hand-on experience that you need to fit into the evolving and competitive global tech market. ",
         },
         {
             imgPath: "/assets/images/girl.png",
-            title: "The most in-demand courses.",
-            desc: "Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. ",
+            title: "In-Demand Courses",
+            desc: "CodeLearnershub offers a variety of in-demand courses designed to equip you with skills needed to thrive in today's dynamic tech landscape. Our curriculum is meticulously crafted to reflect the latest industry trends and technological advancements, ensuring you are prepared to meet the demands of the modern job market. Join us to acquire the skills that are in high demand and position yourself at the forefront of the technology revolution.",
         },
         {
             imgPath: "/assets/images/girl2.png",
             title: "The attention you need to grow.",
-            desc: "Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. Lorem ipsum dolor sit amet consectetur. In adipiscing diam quam leo id a sit et ligula odio. ",
+            desc: "We provide the personalised attention and support you need to excel in the tech space. At CodeLearnershub, we are committed to your personal and professional growth as we offer the attention and resources you need to succeed and enjoy your journey in the tech arena. Join us and experience a learning environment where your unique needs are recognized and nurtured.",
         },
 
     ]
