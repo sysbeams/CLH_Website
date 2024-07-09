@@ -14,7 +14,10 @@ const Heading = () => {
                         <span>Collaborate.</span>
                         <span className="text-secondary">Validate.</span>
                     </div>
-                    <span className="text-[18px] md:text-[20px] leading-[28px] font-[500]">Become an industry ready software developer in a few months.
+                    <span className="text-[18px] md:text-[20px] leading-[28px] font-[600]">
+                        Become an industry ready software developer in a few months.
+                    </span>
+                    <span className="text-[18px] md:text-[20px] leading-[28px] font-[500]">
                         Code Learners Hub gives the best training and hand-on experience that you need to fit into the evolving and competitive global tech market.
                     </span>
                     <div className="flex gap-12">
