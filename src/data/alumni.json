@@ -1,8 +1,8 @@
 [
     {
-      "name": "Motunrayo Ayomide",
-      "occupation": "Software Developer",
-      "imgPath": "/assets/images/girl4.png"
+      "name": "Abd Rasak Olanite",
+      "occupation": "Fullstack Engineer",
+      "imgPath": "/assets/images/razaq.png"
     },
     {
       "name": "Hamzat Mazeedah",
@@ -10,24 +10,25 @@
       "imgPath": "/assets/images/mazeedah.png"
     },
     {
-      "name": "Musa Aminat",
-      "occupation": "Fullstack Engineer",
-      "imgPath": "/assets/images/girl3.png"
+      "name": "Tijani Uthman",
+      "occupation": "Fullstack Software Engineer",
+      "imgPath": "/assets/images/uthman.png"
     },
     {
-      "name": "Musa Aminat",
-      "occupation": "Fullstack Engineer",
-      "imgPath": "/assets/images/girl3.png"
-    },
+      "name": "Muhammad Amotur-Rahman",
+      "occupation": "Fullstack Software Engineer",
+      "imgPath": "/assets/images/amotu.png"
+    },  
     {
-      "name": "Motunrayo Ayomide",
-      "occupation": "Software Developer",
-      "imgPath": "/assets/images/girl4.png"
+      "name": "Olalekan Yunus",
+      "occupation": "Fullstack Software Engineer",
+      "imgPath": "/assets/images/yunus.png"
     },
-    {
-      "name": "Chizom Adama",
-      "occupation": "Cloud Engineer",
-      "imgPath": "/assets/images/girl2.png"
+      {
+      "name": "Mujeeb Oladeji",
+      "occupation": "Fullstack Software Engineer",
+      "imgPath": "/assets/images/mujeeb.png"
     }
+    
   ]
   
