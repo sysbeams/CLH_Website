@@ -1,38 +1,38 @@
 [
     {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
+      "title": "The supportive community and expert instructors made all the difference.",
+      "testimonial": "Learning at CodeLearnersHub has been a game-changer for me. The skills I gained have not only boosted my confidence but also opened up incredible opportunities. I've been able to apply my knowledge on real-life projects, leading to a significant financial breakthrough. The supportive community and expert instructors made all the difference. Thank you, CodeLearnersHub, for setting me on this successful path.",
+      "name": "Hamzat Mazeedah",
+      "occupation": "Fullstack Software Engineer"
+    },
+    {
+      "title": "I am grateful for the opportunity and highly recommend it to anyone looking to piece together their knowledge and gain clarity in this dynamic field.",
+      "testimonial": "Joining CodelearnersHub as a software engineer intern has been a gratifying experience. It felt like assembling a complex gadget for the first time. Each project and task were like individual components that came together to form a complete understanding of the field. The hands-on experience and guidance from seasoned professionals acted as the instruction manual, providing step-by-step clarity on navigating real-world challenges. Just as assembling a gadget requires precision and attention to detail, the internship honed my technical skills and boosted my confidence in software engineering. I am grateful for the opportunity and highly recommend it to anyone looking to piece together their knowledge and gain clarity in this dynamic field.",
+      "name": "Mrs Amotur Rahman",
       "occupation": "Software Developer"
     },
     {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
+      "title": "My time at CLH has been incredibly rewarding, and I highly recommend it to anyone looking to advance their career in technology.",
+      "testimonial": "The comprehensive training programs and hands-on experience provided by the skilled instructors at CLH have significantly enhanced my technical skills and confidence. The supportive learning environment, coupled with real-world projects, allowed me to apply my knowledge effectively and prepared me for the challenges in the tech industry. My time at CLH has been incredibly rewarding, and I highly recommend it to anyone looking to advance their",
+      "name": "Saula Sheriff",
       "occupation": "Software Developer"
     },
     {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
+      "title": "Even after my training, CLH gives immeasurable support to my career growth",
+      "testimonial": "A new dev was assigned to work with me on a project and when he joined the project he was so amazed to see how the project was set up that he asked “which architecture did you use for this project”? When I responded, he said,  “I like the way the project was set up”. Thanks to my principal at CLH whom I reached out to while setting up the project. Even after my training, CLH gives immeasurable support to my career growth.",
+      "name": "Salaudeen Haleem",
       "occupation": "Software Developer"
     },
     {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
+      "title": "CLH provided me with a comprehensive and structured learning path that has significantly accelerated my growth …",
+      "testimonial": "CLH has played a pivotal role in my journey into tech. CLH provided me with a comprehensive and structured learning path that has significantly accelerated my growth as a software developer. CLH afforded me the opportunity of participating in a collaborative project while in training and also exposed me to teaching the basics of engineering to secondary school students.",
+      "name": "Patrick Ogodo",
       "occupation": "Software Developer"
     },
     {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
-      "occupation": "Software Developer"
-    },
-    {
-      "title": "Codelearners gave me the chance to change my life.",
-      "testimonial": "Lorem ipsum dolor sit amet consectetur. Vestibulum morbi id turpis adipiscing urna elementum commodo eget vestibulum. Sapien leo malesuada ut aliquet urna nisi tristique egestas. Lacus felis commodo in.",
-      "name": "Motunrayo Ayomide",
+      "title": "CodeLearnersHub curriculum and structure are top-notch.",
+      "testimonial": "CLH has an  industry-relevant curriculum which prepared me for the current job market and helped me secure a mid-level software developer position just a month after completing my training.",
+      "name": "Mujib Oladeji",
       "occupation": "Software Developer"
     }
   ]

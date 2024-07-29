@@ -5,19 +5,19 @@ const Achievements = () => {
 
     const achievements = [
         {
-            title: "2k+",
+            title: "20",
             desc: "International students.",
         },
         {
-            title: "12+",
+            title: "6+",
             desc: "Years of experience.",
         },
         {
-            title: "15k+",
+            title: "400+",
             desc: "Students taught.",
         },
         {
-            title: "15+",
+            title: "25+",
             desc: "In-demand courses.",
         },
 
