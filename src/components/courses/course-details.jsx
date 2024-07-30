@@ -38,7 +38,7 @@ const CourseDetails = () => {
                 <div className="px-[20px] md:px-[50px]">
                     <SubHeading text={course.title} colourText="" />
                     <div className=" flex flex-col md:flex-row md:h-[550px]">
-                        <div className="custom-border md:flex-1  h-[300px] md:h-auto grayscale bg-no-repeat bg-cover bg-center " style={{ backgroundImage: `url('${course.imgPath}')` }}></div>
+                        <div className="custom-border md:flex-1  h-[300px] md:h-auto grayscale bg-no-repeat bg-contain bg-center " style={{ backgroundImage: `url('${course.imgPath}')` }}></div>
                         <div className="md:basis-[35%] flex flex-col">
                             <div className="custom-border h-[88px] md:h-auto px-[15px] md:px-[30px] justify-center md:flex-1 flex flex-col">
                                 <span className="text-[18px] font-[500]">Enrolled.</span>

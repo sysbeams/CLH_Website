@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "imgPath": "/assets/images/girl4.png",
+    "imgPath": "/assets/images/csharp.png",
     "title": "Full Stack Development with C#",
     "enrolled": "150+",
     "lectures": "180+",
@@ -38,7 +38,7 @@
   },
   {
     "id": 2,
-    "imgPath": "/assets/images/girl2.png",
+    "imgPath": "/assets/images/python.png",
     "title": "Full Stack Development with Python",
     "enrolled": "200+",
     "lectures": "150+",
@@ -72,7 +72,7 @@
   },
   {
     "id": 3,
-    "imgPath": "/assets/images/girl3.png",
+    "imgPath": "/assets/images/java.png",
     "title": "Full Stack Development with Java",
     "enrolled": "180+",
     "lectures": "160+",
@@ -106,7 +106,7 @@
   },
   {
     "id": 4,
-    "imgPath": "/assets/images/girl4.png",
+    "imgPath": "/assets/images/devops.png",
     "title": "DevOps Fundamentals",
     "enrolled": "220+",
     "lectures": "140+",
@@ -139,7 +139,7 @@
   },
   {
     "id": 5,
-    "imgPath": "/assets/images/girl2.png",
+    "imgPath": "/assets/images/ai.png",
     "title": "AI Essentials",
     "enrolled": "300+",
     "lectures": "120+",
@@ -169,7 +169,7 @@
   },
   {
     "id": 6,
-    "imgPath": "/assets/images/girl3.png",
+    "imgPath": "/assets/images/cloud.png",
     "title": "Cloud Computing",
     "enrolled": "250+",
     "lectures": "130+",
@@ -202,7 +202,7 @@
   },
   {
     "id": 7,
-    "imgPath": "/assets/images/girl4.png",
+    "imgPath": "/assets/images/csharp.png",
     "title": "Backend Web Development with C#/.Net",
     "enrolled": "180+",
     "lectures": "160+",
@@ -236,7 +236,7 @@
   },
   {
     "id": 8,
-    "imgPath": "/assets/images/girl2.png",
+    "imgPath": "/assets/images/python.png",
     "title": "Backend Web Development with Python",
     "enrolled": "220+",
     "lectures": "140+",
@@ -269,7 +269,7 @@
   },
   {
     "id": 9,
-    "imgPath": "/assets/images/girl3.png",
+    "imgPath": "/assets/images/node.png",
     "title": "Backend Web Development with Node.js",
     "enrolled": "200+",
     "lectures": "150+",
@@ -301,7 +301,7 @@
   },
   {
     "id": 10,
-    "imgPath": "/assets/images/girl4.png",
+    "imgPath": "/assets/images/react.png",
     "title": "Frontend Development with React/Next.js",
     "enrolled": "250+",
     "lectures": "130+",
@@ -332,7 +332,7 @@
   },
   {
     "id": 11,
-    "imgPath": "/assets/images/girl2.png",
+    "imgPath": "/assets/images/data.png",
     "title": "Data Analytics",
     "enrolled": "280+",
     "lectures": "140+",
@@ -365,7 +365,7 @@
   },
   {
     "id": 12,
-    "imgPath": "/assets/images/girl3.png",
+    "imgPath": "/assets/images/pm.png",
     "title": "Product Management: Developing and Launching Successful Products",
     "enrolled": "150+",
     "lectures": "120+",
