@@ -64,12 +64,12 @@ const TopNav = () => {
                         {
                             navOptions.map((n, index) =>
                                 <Link key={index * 10} href={n.route}>
-                                    <div className="h-[56px] border-y-[1px] border-primary text-[15px] text-primary font-[600] flex items-center justify-center">{n.text}</div>
+                                    <div className="h-[56px] border-y-[1px] border-primary text-[15px] text-primary font-[600] flex items-center justify-center hover:underline transition-all duration-300">{n.text}</div>
                                 </Link>
                             )
                         }
                         <button onClick={() => router.push(`/courses`)} className="h-[56px] border-y-[1px] border-primary bg-secondary text-[15px] text-primary font-[600] flex items-center justify-center">
-                            View Courses
+                            Courses
                         </button>
                         <button onClick={() => setIsOpen(true)} className="h-[56px] border-y-[1px] border-primary bg-primary text-[15px] text-white font-[600] flex items-center justify-center gap-2">
                             <span>Register</span>
@@ -82,7 +82,7 @@ const TopNav = () => {
                         {
                             navOptions.map((n, index) =>
                                 <Link key={index * 10} href={n.route}>
-                                    <span className="text-[15px] text-primary font-[600]">{n.text}</span>
+                                    <span className="text-[15px] text-primary font-[600] hover:underline transition-all duration-300">{n.text}</span>
                                 </Link>
                             )
                         }
@@ -90,7 +90,7 @@ const TopNav = () => {
                     </div>
                     <div className="flex gap-2 h-full">
                         <button onClick={() => router.push(`/courses`)} className="h-full px-[30px] custom-border bg-secondary text-[15px] text-primary font-[600] flex items-center justify-center">
-                            View Courses
+                        Courses
                         </button>
                         <button onClick={() => setIsOpen(true)} className="h-full px-[30px] custom-border bg-primary text-[15px] text-white font-[600] flex items-center justify-center gap-2">
                             <span>Register</span>
