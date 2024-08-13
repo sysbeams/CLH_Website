@@ -1,6 +1,6 @@
 // next-sitemap.js
 module.exports = {
-    siteUrl: 'https://codelearnershub.netlify.app/',
+    siteUrl: 'https://clh.netlify.app/',
     generateRobotsTxt: true,
     transform: (config, path) => {
         let priority;
