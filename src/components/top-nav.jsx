@@ -63,9 +63,12 @@ const TopNav = () => {
                     <div className="w-full flex flex-col mt-4">
                         {
                             navOptions.map((n, index) =>
-                                <Link key={index * 10} href={n.route}>
+                                <button key={index * 10} onClick={() => {
+                                    setIsNavOpen(false);
+                                    router.push(n.route)
+                                }}>
                                     <div className="h-[56px] border-y-[1px] border-primary text-[15px] text-primary font-[600] flex items-center justify-center hover:underline transition-all duration-300">{n.text}</div>
-                                </Link>
+                                </button>
                             )
                         }
                         <button onClick={() => router.push(`/courses`)} className="h-[56px] border-y-[1px] border-primary bg-secondary text-[15px] text-primary font-[600] flex items-center justify-center">
@@ -90,7 +93,7 @@ const TopNav = () => {
                     </div>
                     <div className="flex gap-2 h-full">
                         <button onClick={() => router.push(`/courses`)} className="h-full px-[30px] custom-border bg-secondary text-[15px] text-primary font-[600] flex items-center justify-center">
-                        Courses
+                            Courses
                         </button>
                         <button onClick={() => setIsOpen(true)} className="h-full px-[30px] custom-border bg-primary text-[15px] text-white font-[600] flex items-center justify-center gap-2">
                             <span>Register</span>
