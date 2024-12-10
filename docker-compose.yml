@@ -1,12 +1,16 @@
 version: '3.8'
 
 services:
-  web:
+  app:
     build:
-      context: .  
-    ports:
-      - "3000:3000" 
-    environment:
-      - NODE_ENV=production  
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/app  
+      - .:/usr/src/app
+      - /usr/src/app/node_modules  # Avoid overwriting node_modules
+    ports:
+      - "3000:3000"  # Expose port 3000
+    environment:
+      - NODE_ENV=production
+    command: npm start  # Ensure that `next start` is run after build
+    working_dir: /usr/src/app
