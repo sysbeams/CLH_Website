@@ -1,0 +1,72 @@
+name: CI/Cd Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Lint code
+      run: npm run lint
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run tests
+      run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build
+
+    - name: Deploy to VM
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.DBMART_HOST }}
+          username: ${{ secrets.DBMART_USERNAME }}
+          key: ${{ secrets.DBMART_SSH_KEY }}
+          port: ${{ secrets.DBMART_PORT }}
+          script: |
+            cd ~/CLH_Website
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart ClhWebsite
