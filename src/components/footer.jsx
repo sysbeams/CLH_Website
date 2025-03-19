@@ -39,16 +39,18 @@ const Footer = () => {
 
                 <div className="mt-2 text-[16px]">
                     <span className="block font-[600]">For enquiries:</span>
-                    <span className="block">Whatsapp: <Link href="https://wa.me/2347034612192" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline" title="Chat on Whatsapp"> +2347034612192</Link>  ,
-                        <Link href="https://wa.me/2347031001461" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline" title="Chat on Whatsapp">  +2347031001461</Link>
+                    <span className="block">Whatsapp: 
+                        <Link href="https://wa.me/2347031001461" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline" title="Chat on Whatsapp">  +234 703 190 5878
+                        </Link>
                     </span>
                     <span className="block mt-1">
-                        Email:  <Link href="mailto:codelearnershub@gmail.com" className="text-blue-600 hover:underline" title="Send an email">  codelearnershub@gmail.com</Link>
+                        Email:  <Link href="mailto:info@codelearnershub.com" className="text-blue-600 hover:underline" title="Send an email">  info@codelearnershub.com
+                        </Link>
                     </span>
                 </div>
 
                 <span className="text-[18px] ">
-                    Codelearnershub is a registered trademark of Sysbeams. <br />© 2021-2024 Sysbeams, Inc.
+                    Codelearnershub is a registered trademark of Sysbeams. <br />© 2021-{(new Date()).getFullYear()} Sysbeams, Inc.
                 </span>
 
             </div>
