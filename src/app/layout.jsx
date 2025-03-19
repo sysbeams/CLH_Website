@@ -1,7 +1,11 @@
 import { Quicksand } from "next/font/google";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
 
-const quickSand = Quicksand({ subsets: ["latin"], weights: [400, 500, 600, 700] });
+const quickSand = Quicksand({
+  subsets: ["latin"],
+  weights: [400, 500, 600, 700],
+});
 
 export const metadata = {
   title: "CLH",
@@ -12,7 +16,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={quickSand.className}>{children}</body>
+      <body className={quickSand.className}>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+        />
+        {children}
+      </body>
     </html>
   );
 }

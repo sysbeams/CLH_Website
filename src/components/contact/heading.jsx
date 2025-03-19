@@ -6,11 +6,11 @@ const Heading = () => {
     const contacts = [
         {
             title: "Address",
-            desc: "Gbonogun Junction, Abule Gbonogun, Abeokuta, Ogun State, Nigeria",
+            desc: "CodelearnersHub Complex, Obantoko, Abeokuta, Ogun State, Nigeria",
         },
         {
             title: "Phone",
-            desc: "+234-803-8271651 | +234-806-2061644",
+            desc: "+234 703 190 5878",
         },
         {
             title: "Mail",
