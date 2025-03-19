@@ -61,12 +61,12 @@ jobs:
       uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.DBMART_HOST }}
-          username: ${{ secrets.DBMART_USERNAME }}
-          key: ${{ secrets.DBMART_SSH_KEY }}
-          port: ${{ secrets.DBMART_PORT }}
-          script: |
-            cd ~/CLH_Website
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart ClhWebsite
+        username: ${{ secrets.DBMART_USERNAME }}
+        key: ${{ secrets.DBMART_SSH_KEY }}
+        port: ${{ secrets.DBMART_PORT }}
+        script: |
+          cd ~/CLH_Website
+          git pull origin main
+          npm install
+          npm run build
+          pm2 restart ClhWebsite
