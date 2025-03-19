@@ -64,7 +64,14 @@ jobs:
         port: ${{ secrets.DBMART_PORT }}
         script: |
           cd ~/CLH_Website
+          echo "Pulling latest changes..."
           git pull origin main
-          npm install
-          npm run build
-          pm2 restart ClhWebsite
+
+          echo "Building and tagging the Docker image..."
+          docker compose build --no-cache
+
+          echo "Starting the container..."
+          docker compose up -d --remove-orphans
+
+          echo "Removing old/unused Docker images..."
+          docker image prune -af
