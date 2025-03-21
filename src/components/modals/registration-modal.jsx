@@ -72,8 +72,8 @@ const RegistrationModal = ({ setIsOpen }) => {
                     throw new Error(data.error || "Something went wrong");
                 }
             
-                toast.success(data.message);
                 await sendEmail();
+                toast.success(data.message);
             } catch (error) {
                 toast.error(error.message);
             } finally {

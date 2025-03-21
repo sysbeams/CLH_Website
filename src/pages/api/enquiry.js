@@ -1,6 +1,9 @@
 import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+
 
 export default async function handler(req, res) {
+    dotenv.config();
     if (req.method !== "POST") {
         return res.status(405).json({ message: "Method Not Allowed" });
     }
@@ -12,10 +15,10 @@ export default async function handler(req, res) {
     }
 
     const dbConfig = {
-        host: "108.181.194.141",
-        user: "ambaaq",
-        password: "A#ba&@42",
-        database: 'CLH_WEBSITE'
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME
     };
 
     try {
