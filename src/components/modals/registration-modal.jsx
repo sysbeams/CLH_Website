@@ -11,10 +11,12 @@ const RegistrationModal = ({ setIsOpen }) => {
         name: "",
         tel: "",
         address: "",
+        email: "",
         sponsorTel: "",
         education: "",
         source: "",
     });
+
     const getEmailBdy = () => {
             return `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
@@ -25,6 +27,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                         <p><strong style="color: #007BFF;">Name:</strong> ${enquiry.name}</p>
                         <p><strong style="color: #007BFF;">Address:</strong> ${enquiry.address}</p>
                         <p><strong style="color: #007BFF;">Tel:</strong> ${enquiry.tel}</p>
+                        <p><strong style="color: #007BFF;">Email:</strong> ${enquiry.email}</p>
                         <p><strong style="color: #007BFF;">Sponsor Tel:</strong> ${enquiry.sponsorTel}</p>
                         <p><strong style="color: #007BFF;">Level of Education:</strong> ${enquiry.education}</p>
                         <p><strong style="color: #007BFF;">Source:</strong> ${enquiry.source}</p>
@@ -33,9 +36,8 @@ const RegistrationModal = ({ setIsOpen }) => {
                 </div>
             `;
         }
-        const sendEmail = async (e) => {
-            e.preventDefault();
-            setLoading(true);
+        const sendEmail = async () => {
+            
             const emailRequest = { emailBdy : getEmailBdy(), senderEmail: enquiry.email, subject: "New Registration" }
             try {
                 const response = await fetch("/api/send-email", {
@@ -47,13 +49,38 @@ const RegistrationModal = ({ setIsOpen }) => {
                 });
     
                 const data = await response.json();
-                toast.success(data.message);
+                console.log(data.message);
             } catch (error) {
-                toast.error("Failed to send email");
+                console.log("Failed to send email");
+            }
+        };
+        const handleRegistration = async (e) => {
+            e.preventDefault();
+            setLoading(true);
+            try {
+                const response = await fetch("/api/enquiry", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(enquiry)
+                });
+            
+                const data = await response.json();
+            
+                if (!response.ok) {
+                    throw new Error(data.error || "Something went wrong");
+                }
+            
+                toast.success(data.message);
+                await sendEmail();
+            } catch (error) {
+                toast.error(error.message);
             } finally {
                 setLoading(false);
             }
-        };
+            
+        }
     return (
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div class="bg-white w-[100vw] md:w-[800px] rounded-[2px] custom-border lg:max-h-[90vh] overflow-y-auto hide-scrollbar text-primary">
@@ -69,9 +96,10 @@ const RegistrationModal = ({ setIsOpen }) => {
                         <FaRegTimesCircle size={25}/>
                     </button>
                 </div>
-                <form action="post" onSubmit={sendEmail} className="text-primary text-[16px] md:text-[20px] font-[500] ">
+                <form action="post" onSubmit={handleRegistration} className="text-primary text-[16px] md:text-[20px] font-[500] ">
                     <input type="text" placeholder="Your name" className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" required value={enquiry.name} onChange={(e) => setEnquiry({ ...enquiry, name: e.target.value })} />
                     <input type="text" placeholder="Your phone number" required className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" value={enquiry.tel} onChange={(e) => setEnquiry({ ...enquiry, tel: e.target.value })} />
+                    <input type="text" placeholder="Your Email" required className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" value={enquiry.email} onChange={(e) => setEnquiry({ ...enquiry, email: e.target.value })} />
                     <input type="text" placeholder="Your home address" required className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" value={enquiry.address} onChange={(e) => setEnquiry({ ...enquiry, address: e.target.value })} />
                     <input type="text" placeholder="Sponsor's phone number" className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" value={enquiry.sponsorTel} onChange={(e) => setEnquiry({ ...enquiry, sponsorTel: e.target.value })} />
                     <input type="text" placeholder="Highest level of education attained" required className="custom-border h-[60px] md:h-[86px] px-6 placeholder:text-[#B3B3B3] w-full" value={enquiry.education} onChange={(e) => setEnquiry({ ...enquiry, education: e.target.value })} />

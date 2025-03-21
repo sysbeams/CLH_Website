@@ -1,0 +1,38 @@
+import mysql from "mysql2/promise";
+
+export default async function handler(req, res) {
+    if (req.method !== "POST") {
+        return res.status(405).json({ message: "Method Not Allowed" });
+    }
+
+    const { name, tel, email, address, sponsorTel, education, source } = req.body;
+
+    if (!name || !tel || !address || !sponsorTel || !education || !source) {
+        return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const dbConfig = {
+        host: "108.181.194.141",
+        user: "ambaaq",
+        password: "A#ba&@42",
+        database: 'CLH_WEBSITE'
+    };
+
+    try {
+        // Connect to MySQL (without specifying a database yet)
+        const connection = await mysql.createConnection(dbConfig);
+
+        // Insert enquiry data
+        const insertQuery = `
+            INSERT INTO Enquiries (name, tel, email, address, sponsorTel, education, source)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        `;
+        await connection.execute(insertQuery, [name, tel, email, address, sponsorTel, education, source]);
+
+        await connection.end();
+        return res.status(200).json({ message: "Enquiry saved successfully" });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Database error", error: error.message });
+    }
+}
