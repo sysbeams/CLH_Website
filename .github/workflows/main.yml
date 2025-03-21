@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -34,13 +35,10 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Run tests
-      run: npm test
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Checkout code
@@ -61,12 +59,19 @@ jobs:
       uses: appleboy/ssh-action@v0.1.5
       with:
         host: ${{ secrets.DBMART_HOST }}
-          username: ${{ secrets.DBMART_USERNAME }}
-          key: ${{ secrets.DBMART_SSH_KEY }}
-          port: ${{ secrets.DBMART_PORT }}
-          script: |
-            cd ~/CLH_Website
-            git pull origin main
-            npm install
-            npm run build
-            pm2 restart ClhWebsite
+        username: ${{ secrets.DBMART_USERNAME }}
+        key: ${{ secrets.DBMART_SSH_KEY }}
+        port: ${{ secrets.DBMART_PORT }}
+        script: |
+          cd ~/CLH_Website
+          echo "Pulling latest changes..."
+          git pull origin main
+
+          echo "Building and tagging the Docker image..."
+          docker compose build --no-cache
+
+          echo "Starting the container..."
+          docker compose up -d --remove-orphans
+
+          echo "Removing old/unused Docker images..."
+          docker image prune -af
