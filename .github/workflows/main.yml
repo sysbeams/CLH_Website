@@ -62,15 +62,6 @@ jobs:
 
     - name: Set environment variables
       run: |
-        # Set common environment variables
-        echo "DOMAIN=${{ secrets.DOMAIN }}" >> $GITHUB_ENV
-        echo "APP_PORT=${{ secrets.APP_PORT }}" >> $GITHUB_ENV
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-        echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
-        echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
-        echo "DB_PASS=${{ secrets.DB_PASS }}" >> $GITHUB_ENV
-        echo "COMPOSE_FILE=${{ secrets.COMPOSE_FILE }}" >> $GITHUB_ENV
-
         # Set environment-specific variables
         case "${{ github.ref }}" in
           refs/heads/master)  
@@ -87,6 +78,14 @@ jobs:
         esac
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
+      env:
+        DOMAIN: ${{ secrets.DOMAIN }}
+        APP_PORT: ${{ secrets.APP_PORT }}
+        COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASS: ${{ secrets.DB_PASS }}
       with:
         host: ${{ secrets.DBMART_HOST }}
         username: ${{ secrets.DBMART_USERNAME }}
@@ -104,7 +103,6 @@ jobs:
           export DOMAIN=${{ env.DOMAIN }}
           export APP_PORT=${{ env.APP_PORT }}
           export COMPOSE_FILE=${{ env.COMPOSE_FILE }}
-          export IMAGE_TAG=${{ env.ENVIRONMENT }}
 
           echo "Stopping old containers..."
           docker compose down
