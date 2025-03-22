@@ -1,10 +1,11 @@
-name: CI/Cd Pipeline
+name: Cd Pipeline
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+      - develop
+    types: [closed]
   workflow_dispatch:
 
 jobs:
@@ -15,7 +16,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - name: Checkout code
@@ -27,36 +27,65 @@ jobs:
         node-version: '18'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Lint code
       run: npm run lint
 
     - name: Build project
       run: npm run build
+    
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output-${{ github.ref_name }}-node${{ matrix.node-version }}
+        path: |
+          dist/       # Include only build output
+          package.json
+          package-lock.json
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    environment: ${{ github.ref == 'refs/heads/master' && 'production' || 'staging' }}
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
       with:
-        node-version: '18'
+        name: build-output-${{ github.ref_name }}-node18.x
+        path: ./dist
 
-    - name: Install dependencies
-      run: npm install
-
-    - name: Build project
-      run: npm run build
-
+    - name: Set environment variables
+      run: |
+        # Set environment-specific variables
+        case "${{ github.ref }}" in
+          refs/heads/master)  
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+            echo "NODE_ENV=production" >> $GITHUB_ENV
+        ;;
+          refs/heads/develop)
+          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+          echo "NODE_ENV=staging" >> $GITHUB_ENV
+        ;;
+        *) 
+        echo "Unknown branch, exiting." && exit 1
+        ;;
+        esac
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
+      env:
+        DOMAIN: ${{ secrets.DOMAIN }}
+        APP_PORT: ${{ secrets.APP_PORT }}
+        COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASS: ${{ secrets.DB_PASS }}
       with:
         host: ${{ secrets.DBMART_HOST }}
         username: ${{ secrets.DBMART_USERNAME }}
@@ -64,14 +93,26 @@ jobs:
         port: ${{ secrets.DBMART_PORT }}
         script: |
           cd ~/CLH_Website
+          echo "Checkin out branch ${{ github.ref_name }}..."
+          git checkout ${{ github.ref_name }}
           echo "Pulling latest changes..."
-          git pull origin main
+          git pull origin ${{ github.ref_name }}
 
-          echo "Building and tagging the Docker image..."
+          echo "Setting environment variables..."
+          export NODE_ENV=${{ env.ENVIRONMENT }}
+          export DOMAIN=${{ env.DOMAIN }}
+          export APP_PORT=${{ env.APP_PORT }}
+          export COMPOSE_FILE=${{ env.COMPOSE_FILE }}
+
+          echo "Stopping old containers..."
+          docker compose down
+
+          echo "Building and starting containers..."
           docker compose build --no-cache
-
-          echo "Starting the container..."
           docker compose up -d --remove-orphans
 
-          echo "Removing old/unused Docker images..."
-          docker image prune -af
+          echo "Restarting Nginx..."
+          sudo systemctl reload nginx
+
+          echo "Cleaning up old Docker images..."
+          docker image prune -af --filter "until=24h"
