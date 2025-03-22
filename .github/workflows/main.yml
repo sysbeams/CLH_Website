@@ -61,16 +61,29 @@ jobs:
 
     - name: Set environment variables
       run: |
-        echo "ENVIRONMENT=${{ github.ref_name == 'main' && 'production' || 'staging' }}" >> $GITHUB_ENV
+        # Set common environment variables
         echo "DOMAIN=${{ secrets.DOMAIN }}" >> $GITHUB_ENV
         echo "APP_PORT=${{ secrets.APP_PORT }}" >> $GITHUB_ENV
         echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
         echo "DB_NAME=${{ secrets.DB_NAME }}" >> $GITHUB_ENV
         echo "DB_USER=${{ secrets.DB_USER }}" >> $GITHUB_ENV
         echo "DB_PASS=${{ secrets.DB_PASS }}" >> $GITHUB_ENV
-        echo "DB_HOST=${{ secrets.DB_HOST }}" >> $GITHUB_ENV
-        echo "COMPOSE_FILE=${{secrets.COMPOSE_FILE}}" >> $GITHUB_ENV
+        echo "COMPOSE_FILE=${{ secrets.COMPOSE_FILE }}" >> $GITHUB_ENV
 
+        # Set environment-specific variables
+        case "${{ github.ref }}" in
+          refs/heads/master)  
+            echo "ENVIRONMENT=production" >> $GITHUB_ENV
+            echo "NODE_ENV=production" >> $GITHUB_ENV
+        ;;
+          refs/heads/develop)
+          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+          echo "NODE_ENV=staging" >> $GITHUB_ENV
+        ;;
+        *) 
+        echo "Unknown branch, exiting." && exit 1
+        ;;
+        esac
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
       with:
@@ -80,6 +93,8 @@ jobs:
         port: ${{ secrets.DBMART_PORT }}
         script: |
           cd ~/CLH_Website
+          echo "Checkin out branch ${{ github.ref_name }}..."
+          git checkout ${{ github.ref_name }}
           echo "Pulling latest changes..."
           git pull origin ${{ github.ref_name }}
 
