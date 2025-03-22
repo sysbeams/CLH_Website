@@ -10,18 +10,18 @@ export default async function handler(req, res) {
     try {
         // Configure the email transporter
         let transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.mailtrap.io", // Corrected SMTP host
+            port: 2525, // Use Mailtrap's recommended port
             auth: {
-                user: process.env.EMAIL_USER, 
-                pass: process.env.EMAIL_PASS 
+                user: "api", // Replace with your Mailtrap username
+                pass: "98be8fac52f28330b48aa111f62c3a96"  // Replace with your Mailtrap password
             }
         });
-        
 
         // Email options
         let mailOptions = {
-            from: senderEmail,
-            to: process.env.EMAIL_USER,
+            from: "hello@codelearnershub.com",
+            to: "yusuf.adeyemi@sysbeams.com",
             subject: subject,
             html: emailBdy
         };
@@ -31,6 +31,8 @@ export default async function handler(req, res) {
 
         res.status(200).json({ message: "Email sent successfully" });
     } catch (error) {
+        console.error("Email Error:", error);
         res.status(500).json({ message: "Error sending email", error: error.message });
     }
 }
+
