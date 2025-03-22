@@ -245,7 +245,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             </div>
             
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Sponsor's Phone Number (Optional)</label>
+              <label className="block text-sm font-medium text-gray-700">Sponsor&apos;s Phone Number (Optional)</label>
               <input
                 type="tel"
                 placeholder="Enter sponsor's contact number if applicable"
