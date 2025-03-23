@@ -13,8 +13,8 @@ export default async function handler(req, res) {
             host: "smtp.mailtrap.io", // Corrected SMTP host
             port: 2525, // Use Mailtrap's recommended port
             auth: {
-                user: "api", // Replace with your Mailtrap username
-                pass: "98be8fac52f28330b48aa111f62c3a96"  // Replace with your Mailtrap password
+                user: process.env.EMAIL_USER, 
+                pass: process.env.EMAIL_PASS
             }
         });
 

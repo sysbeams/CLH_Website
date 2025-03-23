@@ -5,8 +5,11 @@ import { BeatLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
+import dotenv from "dotenv";
 
 const RegistrationModal = ({ setIsOpen }) => {
+  
+      dotenv.config();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(0);
@@ -41,7 +44,7 @@ const RegistrationModal = ({ setIsOpen }) => {
   ];
 
   const [captchaToken, setCaptchaToken] = useState(null);
-  const siteKey = "6LeI7fsqAAAAALfIiZGCEwmCD3LnNMGdUG-W2M_7"; // Replace with your actual key
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET;
 
   useEffect(() => {
     // Calculate progress based on current step
