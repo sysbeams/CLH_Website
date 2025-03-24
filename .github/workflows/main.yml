@@ -79,6 +79,7 @@ jobs:
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
       env:
+        NODE_ENV: ${{ secrets.NODE_ENV }}
         DOMAIN: ${{ secrets.DOMAIN }}
         APP_PORT: ${{ secrets.APP_PORT}}
         COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
@@ -86,6 +87,10 @@ jobs:
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
         DB_PASS: ${{ secrets.DB_PASS }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        NEXT_PUBLIC_RECAPTCHA_SITE: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE }}
+        NEXT_PUBLIC_RECAPTCHA_SECRET: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET }}
       with:
         host: ${{ secrets.DBMART_HOST }}
         username: ${{ secrets.DBMART_USERNAME }}
@@ -98,24 +103,26 @@ jobs:
           echo "Pulling latest changes..."
           git pull origin ${{ github.ref_name }}
 
-          echo "Setting environment variables..."
-          echo "NODE_ENV=${{ env.ENVIRONMENT }}" > .env
-          echo "DOMAIN=${{ env.DOMAIN }}" >> .env
-          echo "APP_PORT=${{ env.APP_PORT }}" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-          echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
-          echo "DB_USER=${{ secrets.DB_USER }}" >> .env
-          echo "DB_PASS=${{ secrets.DB_PASS }}" >> .en
-
           echo "Stopping old containers..."
-          docker compose down -f $COMPOSE_FILE stop
+          echo "Using Compose file: $COMPOSE_FILE"
+          docker compose -f "$COMPOSE_FILE" down
 
-          echo "Removing old containers..."
-          docker compose -f $COMPOSE_FILE rm -f
+          echo "Setting environment variables..."
+          export NODE_ENV=${NODE_ENV}
+          export APP_PORT=${APP_PORT}
+          export DOMAIN=${DOMAIN}
+          export DB_HOST=${DB_HOST}
+          export DB_NAME=${DB_NAME}
+          export DB_USER=${DB_USER}
+          export DB_PASS=${DB_PASS}
+          export EMAIL_USER=${EMAIL_USER}
+          export EMAIL_PASS=${EMAIL_PASS}
+          export NEXT_PUBLIC_RECAPTCHA_SITE=${NEXT_PUBLIC_RECAPTCHA_SITE}
+          export NEXT_PUBLIC_RECAPTCHA_SECRET=${NEXT_PUBLIC_RECAPTCHA_SECRET}
+
 
           echo "Building and starting containers..."
-          docker compose -f $COMPOSE_FILE build app
-          docker compose -f $COMPOSE_FILE up -d --remove-orphans
+          docker compose -f "$COMPOSE_FILE" up -d --remove-orphan
 
           echo "Restarting Nginx..."
           sudo systemctl reload nginx
