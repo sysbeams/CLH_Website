@@ -1,5 +1,7 @@
 
 services:
   app:
+    container_name: clh-website-app-production
+    image: clh-website-app:production
     environment:
       - NODE_ENV=production
