@@ -3,7 +3,7 @@ name: Cd Pipeline
 on:
   pull_request:
     branches:
-      - main
+      - master
       - develop
     types: [closed]
   workflow_dispatch:
@@ -80,7 +80,7 @@ jobs:
       uses: appleboy/ssh-action@v0.1.5
       env:
         DOMAIN: ${{ secrets.DOMAIN }}
-        APP_PORT: ${{ secrets.APP_PORT }}
+        APP_PORT: ${{ secrets.APP_PORT}}
         COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_NAME: ${{ secrets.DB_NAME }}

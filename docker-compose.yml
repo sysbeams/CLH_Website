@@ -1,8 +1,8 @@
 
 services:
   app:
-    container_name: clh-website-app-${NODE_ENV}
-    image: clh-website-app:${NODE_ENV} 
+    container_name: clh-website-app-${NODE_ENV:-staging}
+    image: clh-website-app:${NODE_ENV:-staging} 
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,8 +12,8 @@ services:
     ports:
       - "${APP_PORT}:3000"  
     environment:
-      - NODE_ENV=${NODE_ENV}
-      - DOMAIN=${DOMAIN}
+      - NODE_ENV=${NODE_ENV:-staging}
+      - DOMAIN=${DOMAIN:-staging.codelearnershub.com}
       - DB_HOST=db
       - DB_PORT=3306
       - DB_NAME=${DB_NAME}  
