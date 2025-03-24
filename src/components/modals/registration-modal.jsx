@@ -44,7 +44,7 @@ const RegistrationModal = ({ setIsOpen }) => {
   ];
 
   const [captchaToken, setCaptchaToken] = useState(null);
-  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SECRET;
+  const siteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE;
 
   useEffect(() => {
     // Calculate progress based on current step
