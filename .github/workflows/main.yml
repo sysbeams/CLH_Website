@@ -99,17 +99,23 @@ jobs:
           git pull origin ${{ github.ref_name }}
 
           echo "Setting environment variables..."
-          export NODE_ENV=${{ env.ENVIRONMENT }}
-          export DOMAIN=${{ env.DOMAIN }}
-          export APP_PORT=${{ env.APP_PORT }}
-          export COMPOSE_FILE=${{ env.COMPOSE_FILE }}
+          echo "NODE_ENV=${{ env.ENVIRONMENT }}" > .env
+          echo "DOMAIN=${{ env.DOMAIN }}" >> .env
+          echo "APP_PORT=${{ env.APP_PORT }}" >> .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_NAME=${{ secrets.DB_NAME }}" >> .env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+          echo "DB_PASS=${{ secrets.DB_PASS }}" >> .en
 
           echo "Stopping old containers..."
-          docker compose down
+          docker compose down -f $COMPOSE_FILE stop
+
+          echo "Removing old containers..."
+          docker compose -f $COMPOSE_FILE rm -f
 
           echo "Building and starting containers..."
-          docker compose build --no-cache
-          docker compose up -d --remove-orphans
+          docker compose -f $COMPOSE_FILE build app
+          docker compose -f $COMPOSE_FILE up -d --remove-orphans
 
           echo "Restarting Nginx..."
           sudo systemctl reload nginx
