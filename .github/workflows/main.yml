@@ -88,7 +88,6 @@ jobs:
       env:
         DOMAIN: ${{ secrets.DOMAIN }}
         APP_PORT: ${{ secrets.APP_PORT}}
-        COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
@@ -118,18 +117,18 @@ jobs:
           echo "DB_NAME: ${{secrets.DB_NAME}}"
           echo "DB_USER: ${{secrets.DB_USER}}"
           echo "DB_PASS: (hidden)"
-          echo "COMPOSE_FILE: ${{secrets.COMPOSE_FILE}}"
+          echo "COMPOSE_FILE: ${{env.COMPOSE_FILE}}"
           echo "------------------------------------"
 
           # Ensure COMPOSE_FILE is set
-          if [ -z "${{secrets.COMPOSE_FILE}}" ]; then
+          if [ -z "${{env.COMPOSE_FILE}}" ]; then
            echo "🚨 ERROR: COMPOSE_FILE is not set! Exiting..."
             exit 1
           fi
 
           echo "Stopping old containers..."
-          echo "Using Compose file: $COMPOSE_FILE"
-          docker compose -f ${{secrets.COMPOSE_FILE}} down
+          echo "Using Compose file: ${{secrets.COMPOSE_FILE}}"
+          docker compose -f ${{env.COMPOSE_FILE}} down
 
           echo "Setting environment variables..."
           export NODE_ENV=${{env.NODE_ENV}}
@@ -145,7 +144,7 @@ jobs:
           export NEXT_PUBLIC_RECAPTCHA_SECRET=${{secrets.NEXT_PUBLIC_RECAPTCHA_SECRET}}
 
           echo "Building and starting containers..."
-          docker compose -f ${{secrets.COMPOSE_FILE}}  up -d --remove-orphan
+          docker compose -f ${{env.COMPOSE_FILE}}  up -d --remove-orphan
 
           echo "Restarting Nginx..."
           sudo systemctl reload nginx
