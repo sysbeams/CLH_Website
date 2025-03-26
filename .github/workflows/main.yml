@@ -86,16 +86,16 @@ jobs:
         ;;
         esac
          echo "------------------------------------"
-          echo "EMAIL_USER: ${{secrets.EMAIL_USER}}" >> $GITHUB_ENV
-          echo "EMAIL_PASS: ${{secrets.EMAIL_PASS}}" >> $GITHUB_ENV
-          echo "DOMAIN: ${{secrets.DOMAIN}}" >> $GITHUB_ENV
-          echo "DB_HOST: ${{secrets.DB_HOST}}" >> $GITHUB_ENV
-          echo "DB_NAME: ${{secrets.DB_NAME}}" >> $GITHUB_ENV
-          echo "DB_USER: ${{secrets.DB_USER}}" >> $GITHUB_ENV
-          echo "DB_PASS: ${{secrets.DB_PASS}}" >> $GITHUB_ENV
-          echo "COMPOSE_FILE: ${{env.COMPOSE_FILE}}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE }}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_RECAPTCHA_SECRET: ${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET }}" >> $GITHUB_ENV
+          echo "EMAIL_USER=${{secrets.EMAIL_USER}}" >> $GITHUB_ENV
+          echo "EMAIL_PASS=${{secrets.EMAIL_PASS}}" >> $GITHUB_ENV
+          echo "DOMAIN= ${{secrets.DOMAIN}}" >> $GITHUB_ENV
+          echo "DB_HOST=${{secrets.DB_HOST}}" >> $GITHUB_ENV
+          echo "DB_NAME=${{secrets.DB_NAME}}" >> $GITHUB_ENV
+          echo "DB_USER=${{secrets.DB_USER}}" >> $GITHUB_ENV
+          echo "DB_PASS=${{secrets.DB_PASS}}" >> $GITHUB_ENV
+          echo "COMPOSE_FILE=${{env.COMPOSE_FILE}}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_RECAPTCHA_SITE=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE }}" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_RECAPTCHA_SECRET=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET }}" >> $GITHUB_ENV
           echo "------------------------------------"
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
