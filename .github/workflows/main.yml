@@ -67,10 +67,12 @@ jobs:
           refs/heads/master)  
             echo "ENVIRONMENT=production" >> $GITHUB_ENV
             echo "NODE_ENV=production" >> $GITHUB_ENV
+            echo "COMPOSE_FILE=docker-compose.prod.yml" >> $GITHUB_ENV
         ;;
           refs/heads/develop)
           echo "ENVIRONMENT=staging" >> $GITHUB_ENV
           echo "NODE_ENV=staging" >> $GITHUB_ENV
+          echo "COMPOSE_FILE=docker-compose.staging.yml" >> $GITHUB_ENV
         ;;
         *) 
         echo "Unknown branch, exiting." && exit 1
@@ -81,7 +83,7 @@ jobs:
       env:
         DOMAIN: ${{ secrets.DOMAIN }}
         APP_PORT: ${{ secrets.APP_PORT}}
-        COMPOSE_FILE: ${{ secrets.COMPOSE_FILE }}
+        COMPOSE_FILE: ${{ env.COMPOSE_FILE }}
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
@@ -105,11 +107,11 @@ jobs:
           echo "🔍 Debugging Environment Variables:"
           echo "------------------------------------"
           echo "NODE_ENV: ${{env.NODE_ENV}}"
-          echo "APP_PORT: $APP_PORT"
-          echo "DOMAIN: $DOMAIN"
-          echo "DB_HOST: $DB_HOST"
-          echo "DB_NAME: $DB_NAME"
-          echo "DB_USER: $DB_USER"
+          echo "APP_PORT: ${{env.APP_PORT}}"
+          echo "DOMAIN: ${{env.DOMAIN}}"
+          echo "DB_HOST: ${{env.DB_HOST}}"
+          echo "DB_NAME: ${{env.DB_NAME}}"
+          echo "DB_USER: ${{env.DB_USER}}"
           echo "DB_PASS: (hidden)"
           echo "COMPOSE_FILE: ${{env.COMPOSE_FILE}}"
           echo "------------------------------------"
