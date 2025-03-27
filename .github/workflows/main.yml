@@ -1,11 +1,6 @@
 name: Cd Pipeline
 
 on:
-  pull_request:
-    branches:
-      - master
-      - develop
-    types: [closed]
   workflow_dispatch:
 
 jobs:
