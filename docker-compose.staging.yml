@@ -15,10 +15,9 @@ services:
     command: npm start
     working_dir: /usr/src/app
     restart: always
-  networks:
-    - staging_network
-
-  services:
-   app:
     networks:
       - staging_network
+
+networks:
+  staging_network:
+    driver: bridge

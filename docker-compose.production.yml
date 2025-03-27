@@ -17,7 +17,6 @@ services:
     networks:
     - production_network
 
-  services:
-   app:
-    networks:
-      - production_network
+networks:
+  production_network:
+    driver: bridge
