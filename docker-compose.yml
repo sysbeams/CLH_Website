@@ -11,14 +11,8 @@ services:
       - /usr/src/app/node_modules  
     ports:
       - "${APP_PORT}:3000"  
-    environment:
-      - NODE_ENV=${NODE_ENV}
-      - DOMAIN=${DOMAIN}
-      - DB_HOST=${DB_HOST}
-      - DB_PORT=3306
-      - DB_NAME=${DB_NAME}  
-      - DB_USER=${DB_USER} 
-      - DB_PASS=${DB_PASS}
+    env_file:
+      - .env.local
     command: npm start 
     working_dir: /usr/src/app
     restart: always

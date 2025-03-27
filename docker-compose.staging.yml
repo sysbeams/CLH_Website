@@ -1,8 +1,0 @@
-
-
-services:
-  app:
-    container_name: clh-website-app-staging
-    image: clh-website-app:staging
-    environment:
-      - NODE_ENV=staging

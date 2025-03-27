@@ -15,12 +15,11 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [18.x]
 
     steps:
     - name: Checkout code
@@ -29,7 +28,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18'
+        node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
       run: npm ci
@@ -45,7 +44,7 @@ jobs:
       with:
         name: build-output-${{ github.ref_name }}-node${{ matrix.node-version }}
         path: |
-          dist/       # Include only build output
+          dist/
           package.json
           package-lock.json
 
@@ -67,41 +66,29 @@ jobs:
 
     - name: Set environment variables
       run: |
-        # Set environment-specific variables
         case "${{ github.ref }}" in
           refs/heads/master)  
             echo "ENVIRONMENT=production" >> $GITHUB_ENV
             echo "NODE_ENV=production" >> $GITHUB_ENV
             echo "COMPOSE_FILE=docker-compose.prod.yml" >> $GITHUB_ENV
             echo "APP_PORT=3000" >> $GITHUB_ENV
-        ;;
+          ;;
           refs/heads/develop)
-          echo "ENVIRONMENT=staging" >> $GITHUB_ENV
-          echo "NODE_ENV=staging" >> $GITHUB_ENV
-          echo "COMPOSE_FILE=docker-compose.staging.yml" >> $GITHUB_ENV
-          echo "APP_PORT=3001" >> $GITHUB_ENV
-        ;;
-        *) 
-        echo "Unknown branch, exiting." && exit 1
-        ;;
+            echo "ENVIRONMENT=staging" >> $GITHUB_ENV
+            echo "NODE_ENV=staging" >> $GITHUB_ENV
+            echo "COMPOSE_FILE=docker-compose.staging.yml" >> $GITHUB_ENV
+            echo "APP_PORT=3001" >> $GITHUB_ENV
+          ;;
+          *) 
+            echo "Unknown branch, exiting." && exit 1
+          ;;
         esac
-         echo "------------------------------------"
-          echo "EMAIL_USER=${{secrets.EMAIL_USER}}" >> $GITHUB_ENV
-          echo "EMAIL_PASS=${{secrets.EMAIL_PASS}}" >> $GITHUB_ENV
-          echo "DOMAIN= ${{secrets.DOMAIN}}" >> $GITHUB_ENV
-          echo "DB_HOST=${{secrets.DB_HOST}}" >> $GITHUB_ENV
-          echo "DB_NAME=${{secrets.DB_NAME}}" >> $GITHUB_ENV
-          echo "DB_USER=${{secrets.DB_USER}}" >> $GITHUB_ENV
-          echo "DB_PASS=${{secrets.DB_PASS}}" >> $GITHUB_ENV
-          echo "COMPOSE_FILE=${{env.COMPOSE_FILE}}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE }}" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_RECAPTCHA_SECRET=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET }}" >> $GITHUB_ENV
-          echo "------------------------------------"
+
     - name: Deploy to VM
       uses: appleboy/ssh-action@v0.1.5
       env:
         DOMAIN: ${{ secrets.DOMAIN }}
-        APP_PORT: ${{ env.APP_PORT}}
+        APP_PORT: ${{ env.APP_PORT }}
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_USER: ${{ secrets.DB_USER }}
@@ -117,44 +104,32 @@ jobs:
         port: ${{ secrets.DBMART_PORT }}
         script: |
           cd ~/CLH_Website
-          echo "Checkin out branch ${{ github.ref_name }}..."
-          git checkout ${{ github.ref_name }}
+          echo "Checking out branch $(echo ${{ github.ref }} | sed 's|refs/heads/||')..."
+          git checkout $(echo ${{ github.ref }} | sed 's|refs/heads/||')
           echo "Pulling latest changes..."
-          git pull origin ${{ github.ref_name }}
+          git pull origin $(echo ${{ github.ref }} | sed 's|refs/heads/||')
 
-          echo "🔍 Debugging Environment Variables:"
-          echo "------------------------------------"
-          echo "NODE_ENV: ${{env.NODE_ENV}}"
-          echo "APP_PORT: ${{env.APP_PORT}}"
-          echo "DOMAIN: ${{env.DOMAIN}}"
-          echo "DB_HOST: ${{env.DB_HOST}}"
-          echo "DB_NAME: ${{env.DB_NAME}}"
-          echo "DB_USER: ${{env.DB_USER}}"
-          echo "DB_PASS: (hidden)"
-          echo "COMPOSE_FILE: ${{env.COMPOSE_FILE}}"
-          echo "NEXT_PUBLIC_RECAPTCHA_SITE: ${{ env.NEXT_PUBLIC_RECAPTCHA_SITE }}"
-          echo "NEXT_PUBLIC_RECAPTCHA_SECRET: ${{ env.NEXT_PUBLIC_RECAPTCHA_SECRET }}"
-          echo "------------------------------------"
+          echo "Creating environment file..."
+          cat > .env.local <<EOF
+          DB_HOST=${{ secrets.DB_HOST }}
+          DB_NAME=${{ secrets.DB_NAME }}
+          DB_USER=${{ secrets.DB_USER }}
+          DB_PASS=${{ secrets.DB_PASS }}
+          EMAIL_USER=${{ secrets.EMAIL_USER }}
+          EMAIL_PASS=${{ secrets.EMAIL_PASS }}
+          NEXT_PUBLIC_RECAPTCHA_SITE=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SITE }}
+          NEXT_PUBLIC_RECAPTCHA_SECRET=${{ secrets.NEXT_PUBLIC_RECAPTCHA_SECRET }}
+          EOF
+
+          export NODE_ENV=${{ env.NODE_ENV }}
+          export APP_PORT=${{ env.APP_PORT }}
 
           echo "Stopping old containers..."
-          echo "Using Compose file: ${{secrets.COMPOSE_FILE}}"
-          docker compose -f ${{env.COMPOSE_FILE}} down
-
-          echo "Setting environment variables..."
-          export NODE_ENV=${{env.NODE_ENV}}
-          export APP_PORT=${{env.APP_PORT}}
-          export DOMAIN=${{env.DOMAIN}}
-          export DB_HOST=${{env.DB_HOST}}
-          export DB_NAME=${{env.DB_NAME}}
-          export DB_USER=${{env.DB_USER}}
-          export DB_PASS=${{env.DB_PASS}}
-          export EMAIL_USER=${{env.EMAIL_USER}}
-          export EMAIL_PASS=${{env.EMAIL_PASS}}
-          export NEXT_PUBLIC_RECAPTCHA_SITE=${{env.NEXT_PUBLIC_RECAPTCHA_SITE}}
-          export NEXT_PUBLIC_RECAPTCHA_SECRET=${{env.NEXT_PUBLIC_RECAPTCHA_SECRET}}
+          echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
+          docker compose -f ${{ env.COMPOSE_FILE }} down
 
           echo "Building and starting containers..."
-          docker compose -f ${{env.COMPOSE_FILE}}  up -d --remove-orphan
+          docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
 
           echo "Restarting Nginx..."
           sudo systemctl reload nginx
