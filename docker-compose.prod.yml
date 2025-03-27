@@ -1,0 +1,16 @@
+services:
+  app:
+    container_name: clh-website-app-production
+    image: clh-website-app:production
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      -/usr/src/app/node_modules
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.production
+    command: npm start
+    working_dir: /usr/src/app
+    restart: always

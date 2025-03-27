@@ -1,0 +1,17 @@
+services:
+  app:
+    container_name: clh-website-app-staging
+    image: clh-website-app:staging
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "3001:3000"
+    env_file:
+      - .env.staging
+    command: npm start
+    working_dir: /usr/src/app
+    restart: always
