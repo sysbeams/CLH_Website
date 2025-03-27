@@ -1,5 +1,5 @@
 services:
-  staging:
+  app:  # Changed from "staging" to "app" to match production
     container_name: clh-website-app-staging
     image: clh-website-app:staging
     build:

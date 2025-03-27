@@ -1,11 +1,12 @@
 services:
-  production:
+  app:  # Changed from "production" to "app" to match staging
     container_name: clh-website-app-production
     image: clh-website-app:production
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
+      - .:/usr/src/app  # Added missing volume
       - /usr/src/app/node_modules
     ports:
       - "3000:3000"
@@ -15,7 +16,7 @@ services:
     working_dir: /usr/src/app
     restart: always
     networks:
-    - production_network
+      - production_network
 
 networks:
   production_network:
