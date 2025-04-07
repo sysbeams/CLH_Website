@@ -80,33 +80,33 @@ const RegistrationModal = ({ setIsOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!captchaToken) {
-      toast.error("Please complete the CAPTCHA!");
-      return;
-    }
+    // if (!captchaToken) {
+    //   toast.error("Please complete the CAPTCHA!");
+    //   return;
+    // }
 
-    if (!enquiry.education || !enquiry.source) {
-      toast.error("Please complete all required fields!");
-      return;
-    }
+    // if (!enquiry.education || !enquiry.source) {
+    //   toast.error("Please complete all required fields!");
+    //   return;
+    // }
 
     setLoading(true);
     
     try {
       // Verify CAPTCHA
-      const captchaResponse = await fetch("/api/verify-captcha", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token: captchaToken }),
-      });
+      // const captchaResponse = await fetch("/api/verify-captcha", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ token: captchaToken }),
+      // });
 
-      const captchaData = await captchaResponse.json();
+      // const captchaData = await captchaResponse.json();
 
-      if (!captchaData.success) {
-        toast.error("CAPTCHA verification failed!");
-        setLoading(false);
-        return;
-      }
+      // if (!captchaData.success) {
+      //   toast.error("CAPTCHA verification failed!");
+      //   setLoading(false);
+      //   return;
+      // }
 
       // Submit form data
       const response = await fetch("/api/enquiry", {
@@ -477,7 +477,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                 <button
                   type="submit"
                   className="px-6 py-3 rounded-md bg-[#011629] text-white flex items-center gap-2 hover:bg-[#179FC9] transition-all disabled:bg-gray-400"
-                  disabled={loading || !captchaToken}
+                  disabled={loading}
                 >
                   {loading ? (
                     <BeatLoader color="#ffffff" size={8} />

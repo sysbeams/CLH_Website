@@ -36,6 +36,6 @@ export default async function handler(req, res) {
         return res.status(200).json({ message: "Enquiry saved successfully" });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Database error", error: error.message });
+        return res.status(500).json({ message: "Something went wrong. Please try again later." });
     }
 }
