@@ -13,8 +13,6 @@ services:
       - "3001:3000"
     env_file:
       - .env.staging
-    volumes:
-      - .env.staging:/usr/src/app/.env  # Optional, reinforces loading the .env file
     working_dir: /usr/src/app
     command: npm start
     restart: always

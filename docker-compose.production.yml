@@ -13,8 +13,6 @@ services:
       - "3000:3000"
     env_file:
       - .env.production
-    volumes:
-      - .env.production:/usr/src/app/.env  # Optional, reinforces loading the .env file
     working_dir: /usr/src/app
     command: npm start
     restart: always
