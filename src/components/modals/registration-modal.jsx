@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 
 const RegistrationModal = ({ setIsOpen }) => {
   
-      dotenv.config();
+  dotenv.config();
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1);
   const [progress, setProgress] = useState(0);
@@ -138,17 +138,17 @@ const RegistrationModal = ({ setIsOpen }) => {
   const getEmailBdy = () => {
     return `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px; border-radius: 8px;">
-        <h2 style="color: #007BFF; text-align: center;">New Registration On CLH WebSite</h2>
+        <h2 style="color: #179FC9; text-align: center;">New Registration On CLH WebSite</h2>
         <p style="font-size: 16px; color: #555;">Hello, you have received a new enquiry from your website.</p>
         
         <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px;">
-          <p><strong style="color: #007BFF;">Name:</strong> ${enquiry.name}</p>
-          <p><strong style="color: #007BFF;">Address:</strong> ${enquiry.address}</p>
-          <p><strong style="color: #007BFF;">Tel:</strong> ${enquiry.tel}</p>
-          <p><strong style="color: #007BFF;">Email:</strong> ${enquiry.email}</p>
-          <p><strong style="color: #007BFF;">Sponsor Tel:</strong> ${enquiry.sponsorTel}</p>
-          <p><strong style="color: #007BFF;">Level of Education:</strong> ${enquiry.education}</p>
-          <p><strong style="color: #007BFF;">Source:</strong> ${enquiry.source}</p>
+          <p><strong style="color: #179FC9;">Name:</strong> ${enquiry.name}</p>
+          <p><strong style="color: #179FC9;">Address:</strong> ${enquiry.address}</p>
+          <p><strong style="color: #179FC9;">Tel:</strong> ${enquiry.tel}</p>
+          <p><strong style="color: #179FC9;">Email:</strong> ${enquiry.email}</p>
+          <p><strong style="color: #179FC9;">Sponsor Tel:</strong> ${enquiry.sponsorTel}</p>
+          <p><strong style="color: #179FC9;">Level of Education:</strong> ${enquiry.education}</p>
+          <p><strong style="color: #179FC9;">Source:</strong> ${enquiry.source}</p>
         </div>
         <p style="font-size: 12px; color: #777; text-align: center;">This is an automated email. Please do not reply directly.</p>
       </div>
@@ -193,7 +193,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               <input
                 type="text"
                 placeholder="Enter your full name"
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.name}
                 onChange={(e) => setEnquiry({ ...enquiry, name: e.target.value })}
@@ -205,7 +205,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               <input
                 type="tel"
                 placeholder="Enter your phone number"
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.tel}
                 onChange={(e) => setEnquiry({ ...enquiry, tel: e.target.value })}
@@ -217,7 +217,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.email}
                 onChange={(e) => setEnquiry({ ...enquiry, email: e.target.value })}
@@ -240,7 +240,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               <textarea
                 placeholder="Enter your complete home address"
                 rows="3"
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.address}
                 onChange={(e) => setEnquiry({ ...enquiry, address: e.target.value })}
@@ -252,7 +252,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               <input
                 type="tel"
                 placeholder="Enter sponsor's contact number if applicable"
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 value={enquiry.sponsorTel}
                 onChange={(e) => setEnquiry({ ...enquiry, sponsorTel: e.target.value })}
               />
@@ -273,7 +273,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">Highest Level of Education*</label>
               <select
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.education}
                 onChange={(e) => setEnquiry({ ...enquiry, education: e.target.value })}
@@ -290,7 +290,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             <div className="space-y-2">
               <label className="block text-sm font-medium text-gray-700">How did you hear about CodeLearners Hub?*</label>
               <select
-                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 transition-all"
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.source}
                 onChange={(e) => setEnquiry({ ...enquiry, source: e.target.value })}
@@ -336,14 +336,14 @@ const RegistrationModal = ({ setIsOpen }) => {
           {/* Progress bar */}
           <div className="absolute top-0 left-0 w-full h-1 bg-gray-200">
             <motion.div 
-              className="h-full bg-blue-500"
+              className="h-full bg-[#179FC9]"
               initial={{ width: 0 }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5 }}
             />
           </div>
           
-          <div className="relative h-[220px] md:h-[250px] bg-gradient-to-r from-[#3884e1] via-secondary to-cyan-400 overflow-hidden">
+          <div className="relative h-[220px] md:h-[250px] bg-gradient-to-r from-[#011629] via-[#0a3958] to-[#179FC9] overflow-hidden">
             {/* Animated background elements */}
             <div className="absolute inset-0">
               {Array.from({ length: 20 }).map((_, i) => (
@@ -382,7 +382,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                 >
                   <h2 className="text-3xl md:text-5xl font-bold text-white mb-2">
                     Join Our
-                    <span className="text-yellow-300"> Journey</span>
+                    <span className="text-[#179FC9]"> Journey</span>
                   </h2>
                   <p className="text-white text-sm md:text-base opacity-90 max-w-xs">
                     Take the first step toward mastering coding with CodeLearners Hub
@@ -397,8 +397,8 @@ const RegistrationModal = ({ setIsOpen }) => {
                         type="button"
                         onClick={() => dotStep < step && setStep(dotStep)}
                         className={`flex items-center justify-center h-8 w-8 rounded-full border-2 
-                          ${getDotStatus(dotStep) === 'completed' ? 'bg-green-500 border-green-500 text-white' : 
-                          getDotStatus(dotStep) === 'current' ? 'bg-white border-white text-secondary' : 
+                          ${getDotStatus(dotStep) === 'completed' ? 'bg-[#179FC9] border-[#179FC9] text-white' : 
+                          getDotStatus(dotStep) === 'current' ? 'bg-white border-white text-[#011629]' : 
                           'bg-transparent border-white/50 text-white/50'}`}
                         disabled={dotStep > step}
                       >
@@ -410,7 +410,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                       </button>
                       
                       {dotStep < 3 && (
-                        <div className={`w-12 h-0.5 mx-1 ${dotStep < step ? 'bg-green-500' : 'bg-white/30'}`} />
+                        <div className={`w-12 h-0.5 mx-1 ${dotStep < step ? 'bg-[#179FC9]' : 'bg-white/30'}`} />
                       )}
                     </div>
                   ))}
@@ -430,7 +430,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-white hover:text-yellow-300 transition-colors"
+              className="absolute top-4 right-4 text-white hover:text-[#179FC9] transition-colors"
             >
               <FaRegTimesCircle size={28} />
             </button>
@@ -439,7 +439,7 @@ const RegistrationModal = ({ setIsOpen }) => {
         
         {/* Form Content */}
         <div className="px-6 py-8 md:px-10">
-          <h3 className="text-xl font-semibold text-gray-800 mb-6">
+          <h3 className="text-xl font-semibold text-[#011629] mb-6">
             {step === 1 ? "Personal Information" : 
              step === 2 ? "Contact Details" : 
              "Education & Discovery"}
@@ -468,7 +468,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                 <button
                   type="button"
                   onClick={nextStep}
-                  className="px-6 py-3 rounded-md bg-[#3884e1] text-white flex items-center gap-2 hover:bg-secondary transition-all"
+                  className="px-6 py-3 rounded-md bg-[#011629] text-white flex items-center gap-2 hover:bg-[#179FC9] transition-all"
                 >
                   <span>Continue</span>
                   <FaArrowRight size={14} />
@@ -476,7 +476,7 @@ const RegistrationModal = ({ setIsOpen }) => {
               ) : (
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-md bg-[#3884e1] text-white flex items-center gap-2 hover:bg-secondary transition-all disabled:bg-blue-400"
+                  className="px-6 py-3 rounded-md bg-[#011629] text-white flex items-center gap-2 hover:bg-[#179FC9] transition-all disabled:bg-gray-400"
                   disabled={loading || !captchaToken}
                 >
                   {loading ? (
@@ -491,13 +491,6 @@ const RegistrationModal = ({ setIsOpen }) => {
               )}
             </div>
           </form>
-          
-          <div className="mt-8 pt-4 border-t border-gray-200">
-            <p className="text-xs text-gray-500 text-center">
-              By submitting this form, you agree to our Terms of Service and Privacy Policy.
-              Your information will be processed in accordance with our privacy practices.
-            </p>
-          </div>
         </div>
       </motion.div>
     </div>
