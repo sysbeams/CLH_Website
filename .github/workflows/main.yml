@@ -86,7 +86,7 @@ jobs:
           echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
           docker compose -f ${{ env.COMPOSE_FILE }} down
 
-          echo "Building and starting containers..."
+          echo "Building and starting containers..."/
           docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
           docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
 
