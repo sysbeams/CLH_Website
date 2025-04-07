@@ -21,6 +21,7 @@ const RegistrationModal = ({ setIsOpen }) => {
     sponsorTel: "",
     education: "",
     source: "",
+    
   });
 
   const educationOptions = [
@@ -79,17 +80,17 @@ const RegistrationModal = ({ setIsOpen }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!captchaToken) {
       toast.error("Please complete the CAPTCHA!");
       return;
     }
-
+  
     if (!enquiry.education || !enquiry.source) {
       toast.error("Please complete all required fields!");
       return;
     }
-
+  
     setLoading(true);
     
     try {
@@ -99,15 +100,15 @@ const RegistrationModal = ({ setIsOpen }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token: captchaToken }),
       });
-
+  
       const captchaData = await captchaResponse.json();
-
+  
       if (!captchaData.success) {
         toast.error("CAPTCHA verification failed!");
         setLoading(false);
         return;
       }
-
+  
       // Submit form data
       const response = await fetch("/api/enquiry", {
         method: "POST",
@@ -116,18 +117,21 @@ const RegistrationModal = ({ setIsOpen }) => {
         },
         body: JSON.stringify(enquiry),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
         throw new Error(data.error || "Something went wrong");
       }
-
+  
       // Send email notification
-      await sendEmail();
+      const emailSuccess = await sendEmail();
       
-      toast.success("Registration successful! We'll be in touch soon.");
-      setTimeout(() => setIsOpen(false), 2000);
+      // Only show success message after both form submission and email are successful
+      if (emailSuccess) {
+        toast.success("Registration successful! We'll be in touch soon.");
+        setTimeout(() => setIsOpen(false), 2000);
+      }
     } catch (error) {
       toast.error(error.message || "An error occurred during registration");
     } finally {
@@ -169,11 +173,18 @@ const RegistrationModal = ({ setIsOpen }) => {
         },
         body: JSON.stringify(emailRequest),
       });
-
+  
       const data = await response.json();
-      console.log(data.message);
+  
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send confirmation email");
+      }
+      
+      return true; // Indicate success
     } catch (error) {
-      console.log("Failed to send email");
+      console.error("Failed to send email:", error);
+      toast.warning("Registration saved, but confirmation email could not be sent");
+      return false;
     }
   };
 
