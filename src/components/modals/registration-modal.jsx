@@ -21,6 +21,7 @@ const RegistrationModal = ({ setIsOpen }) => {
     sponsorTel: "",
     education: "",
     source: "",
+    
   });
 
   const educationOptions = [
