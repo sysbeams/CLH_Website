@@ -10,8 +10,8 @@ export default async function handler(req, res) {
 
     const { name, tel, email, address, sponsorTel, education, source } = req.body;
 
-    if (!name || !tel || !address || !sponsorTel || !education || !source) {
-        return res.status(400).json({ message: "All fields are required" });
+    if (!name || !tel || !address || !education || !source) {
+        return res.status(400).json({ message: "Fill the required fields" });
     }
 
     const dbConfig = {
@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             INSERT INTO Enquiries (name, tel, email, address, sponsorTel, education, source)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         `;
-        await connection.execute(insertQuery, [name, tel, email, address, sponsorTel, education, source]);
+        await connection.execute(insertQuery, [name, tel, email, address, sponsorTel ?? "", education, source]);
 
         await connection.end();
         return res.status(200).json({ message: "Enquiry saved successfully" });

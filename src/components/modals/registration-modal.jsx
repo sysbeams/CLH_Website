@@ -299,7 +299,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             </div>
             
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">How did you hear about CodeLearners Hub?*</label>
+              <label className="block text-sm font-medium text-gray-700">How did you hear about CodeLearnersHub?*</label>
               <select
                 className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
@@ -396,7 +396,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                     <span className="text-[#179FC9]"> Journey</span>
                   </h2>
                   <p className="text-white text-sm md:text-base opacity-90 max-w-xs">
-                    Take the first step toward mastering coding with CodeLearners Hub
+                    Take the first step toward mastering coding with CodeLearnersHub
                   </p>
                 </motion.div>
 
