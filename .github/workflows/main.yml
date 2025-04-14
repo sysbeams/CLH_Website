@@ -42,36 +42,36 @@ jobs:
           package-lock.json
 
   deploy:
-  needs: build
-  runs-on: ubuntu-latest
-  environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
-  if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
-  
-  steps:
-  - name: Deploy to VM
-    uses: appleboy/ssh-action@v0.1.5
-    with:
-      host: ${{ secrets.DBMART_HOST }}
-      username: ${{ secrets.DBMART_USERNAME }}
-      key: ${{ secrets.DBMART_SSH_KEY }}
-      port: ${{ secrets.DBMART_PORT }}
-      script: |
-        cd ~/CLH_Website
-        echo "Checking out branch ${{ github.ref_name }}..."
-        git checkout ${{ github.ref_name }}
-        echo "Pulling latest changes..."
-        git pull origin ${{ github.ref_name }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    
+    steps:
+    - name: Deploy to VM
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: ${{ secrets.DBMART_HOST }}
+        username: ${{ secrets.DBMART_USERNAME }}
+        key: ${{ secrets.DBMART_SSH_KEY }}
+        port: ${{ secrets.DBMART_PORT }}
+        script: |
+          cd ~/CLH_Website
+          echo "Checking out branch ${{ github.ref_name }}..."
+          git checkout ${{ github.ref_name }}
+          echo "Pulling latest changes..."
+          git pull origin ${{ github.ref_name }}
 
-        echo "Stopping old containers..."
-        echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
-        docker compose -f ${{ env.COMPOSE_FILE }} down
+          echo "Stopping old containers..."
+          echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
+          docker compose -f ${{ env.COMPOSE_FILE }} down
 
-        echo "Building with latest changes..."
-        docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
-        docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
+          echo "Building with latest changes..."
+          docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
+          docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
 
-        echo "Restarting Nginx..."
-        sudo systemctl reload nginx
+          echo "Restarting Nginx..."
+          sudo systemctl reload nginx
 
-        echo "Cleaning up old Docker images..."
-        docker image prune -af --filter "until=24h"
+          echo "Cleaning up old Docker images..."
+          docker image prune -af --filter "until=24h"
