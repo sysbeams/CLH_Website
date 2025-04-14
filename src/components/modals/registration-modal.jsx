@@ -299,7 +299,7 @@ const RegistrationModal = ({ setIsOpen }) => {
             </div>
             
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">How did you hear about CodeLearners Hub?*</label>
+              <label className="block text-sm font-medium text-gray-700">How did you hear about CodeLearnersHub?*</label>
               <select
                 className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
