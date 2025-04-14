@@ -17,7 +17,7 @@ const AboutUs = () => {
                         <span className="text-center md:text-start">6+ years of teaching and </span>
                         <span className="text-center md:text-start text-secondary">academic greatness.</span>
                     </div>
-                    <div className="relative flex-1 grayscale bg-no-repeat bg-cover bg-[url('/assets/images/man4.png')] w-[300px] min-h-[350px] md:w-[340px] md:h-[440px] -bottom-5">
+                    <div className="relative flex-1 grayscale bg-no-repeat bg-cover bg-[url('/assets/images/112.png')] w-[300px] min-h-[350px] md:w-[340px] md:h-[440px] -bottom-5">
 
                     </div>
                 </div>
