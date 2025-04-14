@@ -1,6 +1,9 @@
 name: Cd Pipeline
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
 
 jobs:
@@ -42,8 +45,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
-    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
-
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
