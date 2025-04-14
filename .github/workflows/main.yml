@@ -42,59 +42,36 @@ jobs:
           package-lock.json
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
-    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
-    
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+  needs: build
+  runs-on: ubuntu-latest
+  environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
+  if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+  
+  steps:
+  - name: Deploy to VM
+    uses: appleboy/ssh-action@v0.1.5
+    with:
+      host: ${{ secrets.DBMART_HOST }}
+      username: ${{ secrets.DBMART_USERNAME }}
+      key: ${{ secrets.DBMART_SSH_KEY }}
+      port: ${{ secrets.DBMART_PORT }}
+      script: |
+        cd ~/CLH_Website
+        echo "Checking out branch ${{ github.ref_name }}..."
+        git checkout ${{ github.ref_name }}
+        echo "Pulling latest changes..."
+        git pull origin ${{ github.ref_name }}
 
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-output-${{ github.ref_name }}-node18.x
-        path: ./dist
+        echo "Stopping old containers..."
+        echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
+        docker compose -f ${{ env.COMPOSE_FILE }} down
 
-    - name: Set environment variables
-      run: |
-        case "${{ github.ref }}" in
-          refs/heads/master)
-            echo "COMPOSE_FILE=docker-compose.production.yml" >> $GITHUB_ENV
-          ;;
-          refs/heads/develop)
-            echo "COMPOSE_FILE=docker-compose.staging.yml" >> $GITHUB_ENV
-          ;;
-          *) 
-            echo "Unknown branch, exiting." && exit 1
-          ;;
-        esac
+        echo "Building with latest changes..."
+        docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
+        docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
 
-    - name: Deploy to VM
-      uses: appleboy/ssh-action@v0.1.5
-      with:
-        host: ${{ secrets.DBMART_HOST }}
-        username: ${{ secrets.DBMART_USERNAME }}
-        key: ${{ secrets.DBMART_SSH_KEY }}
-        port: ${{ secrets.DBMART_PORT }}
-        script: |
-          cd ~/CLH_Website
-          echo "Checking out branch $(echo ${{ github.ref_name}})..."
-          git checkout ${{ github.ref_name}}
-          echo "Pulling latest changes..."
-          git pull origin ${{ github.ref_name}}
+        echo "Restarting Nginx..."
+        sudo systemctl reload nginx
 
-          echo "Stopping old containers..."
-          echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
-          docker compose -f ${{ env.COMPOSE_FILE }} down
-
-          echo "Building and starting containers..."/
-          docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
-          docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
-
-          echo "Restarting Nginx..."
-          sudo systemctl reload nginx
-
-          echo "Cleaning up old Docker images..."
-          docker image prune -af --filter "until=24h"
+        echo "Cleaning up old Docker images..."
+        docker image prune -af --filter "until=24h"
