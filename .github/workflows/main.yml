@@ -67,6 +67,7 @@ jobs:
           docker compose -f ${{ env.COMPOSE_FILE }} down
 
           echo "Building with latest changes..."
+          docker compose -f ${{ env.COMPOSE_FILE }} up --build -d --remove-orphans --no-cache
           docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
           docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
 
