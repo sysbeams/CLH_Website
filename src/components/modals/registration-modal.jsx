@@ -396,7 +396,7 @@ const RegistrationModal = ({ setIsOpen }) => {
                     <span className="text-[#179FC9]"> Journey</span>
                   </h2>
                   <p className="text-white text-sm md:text-base opacity-90 max-w-xs">
-                    Take the first step toward mastering coding with CodeLearnersHub
+                    Take the first step toward mastering coding with Code Learners Hub
                   </p>
                 </motion.div>
 
