@@ -39,8 +39,16 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: Set up Docker
+      uses: docker/setup-buildx-action@v2
+
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install docker-compose-plugin
+
     - name: Build Docker image
-      run: docker-compose -f ${{ env.COMPOSE_FILE }} build
+      run: docker compose -f ${{ env.COMPOSE_FILE }} build
 
   cd:
     name: Continuous Deployment
@@ -53,7 +61,9 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Install Docker Compose
-      run: sudo apt-get update && sudo apt-get install docker-compose-plugin
+      run: |
+        sudo apt-get update
+        sudo apt-get install docker-compose-plugin
 
     - name: Deploy to VM
       uses: appleboy/ssh-action@v1.0.0
@@ -68,13 +78,10 @@ jobs:
           git pull origin master
           
           echo "Stopping and removing old containers..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
-          
-          echo "Pulling latest image..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} pull
+          docker compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
           
           echo "Starting new containers..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} up -d --build
+          docker compose -f ${{ env.COMPOSE_FILE }} up -d --build
           
           echo "Cleaning up old images..."
           docker image prune -af --filter "until=24h"
