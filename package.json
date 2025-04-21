@@ -13,6 +13,7 @@
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.5.0",
+    "mailtrap": "^4.1.0",
     "mysql2": "^3.14.0",
     "next": "^14.1.4",
     "next-sitemap": "^4.2.3",

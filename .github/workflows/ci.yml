@@ -1,35 +1,85 @@
-name: CI Pipeline
+name: Combined CI/CD Pipeline
 
 on:
   push:
-    branches: [ "*" ]
+    branches:
+      - master
+      - develop
   pull_request:
-    branches: [ "master" ]
+    branches:
+      - master
+      - develop
   workflow_dispatch:
 
+env:
+  COMPOSE_FILE: docker-compose.production.yml
+  DOCKER_IMAGE_NAME: clh-website-app
+
 jobs:
-  build:
-
+  ci:
+    name: Continuous Integration
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: 18.x
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Lint code
       run: npm run lint
 
     - name: Build project
       run: npm run build
+
+    - name: Build Docker image
+      run: docker-compose -f ${{ env.COMPOSE_FILE }} build
+
+  cd:
+    name: Continuous Deployment
+    needs: ci
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Docker Compose
+      run: sudo apt-get update && sudo apt-get install docker-compose-plugin
+
+    - name: Deploy to VM
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.DBMART_HOST }}
+        username: ${{ secrets.DBMART_USERNAME }}
+        key: ${{ secrets.DBMART_SSH_KEY }}
+        port: ${{ secrets.DBMART_PORT }}
+        script: |
+          echo "Pulling latest changes..."
+          cd ~/CLH_Website
+          git pull origin master
+          
+          echo "Stopping and removing old containers..."
+          docker-compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
+          
+          echo "Pulling latest image..."
+          docker-compose -f ${{ env.COMPOSE_FILE }} pull
+          
+          echo "Starting new containers..."
+          docker-compose -f ${{ env.COMPOSE_FILE }} up -d --build
+          
+          echo "Cleaning up old images..."
+          docker image prune -af --filter "until=24h"
+          
+          echo "Restarting Nginx..."
+          sudo systemctl reload nginx
+          
+          echo "Deployment complete!"
