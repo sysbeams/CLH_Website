@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         let mailOptions = {
             from: "hello@codelearnershub.com",
             to: [
-                "ajibikeabdulqayyum04@gmail.com",
+                "hello@codelearnershub.com",
               ],
             subject: subject,
             html: emailBdy
