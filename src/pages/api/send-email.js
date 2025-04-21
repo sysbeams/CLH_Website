@@ -1,3 +1,4 @@
+import { MailtrapTransport } from "mailtrap";
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
@@ -9,19 +10,16 @@ export default async function handler(req, res) {
 
     try {
         // Configure the email transporter
-        let transporter = nodemailer.createTransport({
-            host: "smtp.mailtrap.io", // Corrected SMTP host
-            port: 2525, // Use Mailtrap's recommended port
-            auth: {
-                user: process.env.EMAIL_USER, 
-                pass: process.env.EMAIL_PASS
-            }
-        });
+        let transporter = nodemailer.createTransport(MailtrapTransport({
+    token: "98be8fac52f28330b48aa111f62c3a96",
+  }));
 
         // Email options
         let mailOptions = {
             from: "hello@codelearnershub.com",
-            to: "yusuf.adeyemi@sysbeams.com",
+            to: [
+                "hello@codelearnershub.com",
+              ],
             subject: subject,
             html: emailBdy
         };
