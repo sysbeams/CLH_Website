@@ -61,11 +61,6 @@ jobs:
           cd /CLH_Website
           git pull origin master
 
-          echo "Writing environment variables to .env file..."
-          touch .env.production
-          chmod 600 .env.production
-          echo "${{ secrets.PROD_ENV }}" > .env.production
-
           echo "Stopping and removing old containers..."
           docker compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
           
