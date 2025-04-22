@@ -60,20 +60,20 @@ jobs:
           echo "Pulling latest changes..."
           cd ~/CLH_Website
           git pull origin master
-          
+
+          echo "Writing environment variables to .env file..."
+          echo "${{ secrets.PROD_ENV }}" > .env.production
+
           echo "Stopping and removing old containers..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
+          docker compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
           
           echo "Pulling latest image..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} pull
+          docker compose -f ${{ env.COMPOSE_FILE }} pull
           
           echo "Starting new containers..."
-          docker-compose -f ${{ env.COMPOSE_FILE }} up -d --build
+          docker compose -f ${{ env.COMPOSE_FILE }} up -d --build
           
           echo "Cleaning up old images..."
           docker image prune -af --filter "until=24h"
-          
-          echo "Restarting Nginx..."
-          sudo systemctl reload nginx
           
           echo "Deployment complete!"
