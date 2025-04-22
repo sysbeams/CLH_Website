@@ -39,9 +39,6 @@ jobs:
     - name: Build project
       run: npm run build
 
-    - name: Build Docker image
-      run: docker-compose -f ${{ env.COMPOSE_FILE }} build
-
   cd:
     name: Continuous Deployment
     needs: ci
