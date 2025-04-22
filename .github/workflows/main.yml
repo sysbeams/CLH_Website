@@ -58,7 +58,7 @@ jobs:
         port: ${{ secrets.DBMART_PORT }}
         script: |
           echo "Pulling latest changes..."
-          cd ~/CLH_Website
+          cd /CLH_Website
           git pull origin master
 
           echo "Writing environment variables to .env file..."
