@@ -1,87 +1,76 @@
-name: Cd Pipeline
+name: Combined CI/CD Pipeline
 
 on:
   push:
     branches:
       - master
+      - develop
+  pull_request:
+    branches:
+      - master
+      - develop
   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+env:
+  COMPOSE_FILE: docker-compose.production.yml
+  DOCKER_IMAGE_NAME: clh-website-app
 
-    strategy:
-      matrix:
-        node-version: [18.x]
+jobs:
+  ci:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: 18.x
+        cache: 'npm'
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - name: Lint code
       run: npm run lint
 
     - name: Build project
       run: npm run build
-    - name: Checkout code
-      uses: actions/checkout@v2
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install dependencies
-    
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: build-output-${{ github.ref_name }}-node${{ matrix.node-version }}
-        path: |
-          dist/
-          package.json
-          package-lock.json
-
-  deploy:
-    needs: build
+  cd:
+    name: Continuous Deployment
+    needs: ci
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.environment || (github.ref == 'refs/heads/master' && 'production' || 'staging') }}
-    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch' || github.event.pull_request.merged == true
+    if: github.ref == 'refs/heads/master' || github.event_name == 'workflow_dispatch'
     
     steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
     - name: Deploy to VM
-      uses: appleboy/ssh-action@v0.1.5
+      uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.DBMART_HOST }}
         username: ${{ secrets.DBMART_USERNAME }}
         key: ${{ secrets.DBMART_SSH_KEY }}
         port: ${{ secrets.DBMART_PORT }}
         script: |
-          cd ~/CLH_Website
-          echo "Checking out branch ${{ github.ref_name }}..."
-          git checkout ${{ github.ref_name }}
           echo "Pulling latest changes..."
-          git pull origin ${{ github.ref_name }}
+          cd /CLH_Website
+          git pull origin master
 
-          echo "Stopping old containers..."
-          echo "Using Compose file: ${{ env.COMPOSE_FILE }}"
-          docker compose -f ${{ env.COMPOSE_FILE }} down
-
-          echo "Building with latest changes..."
-          docker compose -f ${{ env.COMPOSE_FILE }} up --build -d --remove-orphans --no-cache
-          docker compose -f ${{ env.COMPOSE_FILE }} build --no-cache
-          docker compose -f ${{ env.COMPOSE_FILE }} up -d --remove-orphans
-
-          echo "Restarting Nginx..."
-          sudo systemctl reload nginx
-
-          echo "Cleaning up old Docker images..."
+          echo "Stopping and removing old containers..."
+          docker compose -f ${{ env.COMPOSE_FILE }} down --remove-orphans
+          
+          echo "Pulling latest image..."
+          docker compose -f ${{ env.COMPOSE_FILE }} pull
+          
+          echo "Starting new containers..."
+          docker compose -f ${{ env.COMPOSE_FILE }} up -d --build
+          
+          echo "Cleaning up old images..."
           docker image prune -af --filter "until=24h"
+          
+          echo "Deployment complete!"
