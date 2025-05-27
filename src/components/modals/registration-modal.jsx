@@ -7,6 +7,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { motion, AnimatePresence } from "framer-motion";
 import dotenv from "dotenv";
 
+import CoursesData from "../../data/courses.json";
+
 const RegistrationModal = ({ setIsOpen }) => {
   
   dotenv.config();
@@ -21,7 +23,7 @@ const RegistrationModal = ({ setIsOpen }) => {
     sponsorTel: "",
     education: "",
     source: "",
-    
+    course: ""
   });
 
   const educationOptions = [
@@ -152,6 +154,7 @@ const RegistrationModal = ({ setIsOpen }) => {
           <p><strong style="color: #179FC9;">Email:</strong> ${enquiry.email}</p>
           <p><strong style="color: #179FC9;">Sponsor Tel:</strong> ${enquiry.sponsorTel}</p>
           <p><strong style="color: #179FC9;">Level of Education:</strong> ${enquiry.education}</p>
+          <p><strong style="color: #179FC9;">Course:</strong> ${enquiry.course}</p>
           <p><strong style="color: #179FC9;">Source:</strong> ${enquiry.source}</p>
         </div>
         <p style="font-size: 12px; color: #777; text-align: center;">This is an automated email. Please do not reply directly.</p>
@@ -247,27 +250,57 @@ const RegistrationModal = ({ setIsOpen }) => {
             className="space-y-6"
           >
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Home Address*</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Home Address*
+              </label>
               <textarea
                 placeholder="Enter your complete home address"
                 rows="3"
                 className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 required
                 value={enquiry.address}
-                onChange={(e) => setEnquiry({ ...enquiry, address: e.target.value })}
+                onChange={(e) =>
+                  setEnquiry({ ...enquiry, address: e.target.value })
+                }
               />
             </div>
-            
+
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-gray-700">Sponsor&apos;s Phone Number (Optional)</label>
+              <label className="block text-sm font-medium text-gray-700">
+                Sponsor&apos;s Phone Number (Optional)
+              </label>
               <input
                 type="tel"
                 placeholder="Enter sponsor's contact number if applicable"
                 className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
                 value={enquiry.sponsorTel}
-                onChange={(e) => setEnquiry({ ...enquiry, sponsorTel: e.target.value })}
+                onChange={(e) =>
+                  setEnquiry({ ...enquiry, sponsorTel: e.target.value })
+                }
               />
-              <p className="text-xs text-gray-500 italic">This field is optional and can be left blank</p>
+              <p className="text-xs text-gray-500 italic">
+                This field is optional and can be left blank
+              </p>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-gray-700">
+                Select A Course*
+              </label>
+              <select
+                className="w-full p-4 rounded-lg bg-gray-50 border border-gray-200 focus:border-[#179FC9] focus:ring-2 focus:ring-[#179FC9]/20 transition-all"
+                required
+                value={enquiry.education}
+                onChange={(e) =>
+                  setEnquiry({ ...enquiry, course: e.target.value })
+                }
+              >
+                <option value="">Select your education level</option>
+                {CoursesData.map((course, index) => (
+                  <option key={index} value={course.title}>
+                    {course.title}
+                  </option>
+                ))}
+              </select>
             </div>
           </motion.div>
         );
