@@ -1,6 +1,37 @@
 [
   {
     "id": 1,
+    "imgPath": "/assets/images/summer.png",
+    "title": "Virtual Summer Coding Coaching for Kids",
+    "enrolled": "150+",
+    "lectures": "Python and AI",
+    "level": "Beginner",
+    "price": "NGN 100,000",
+    "description": "A fun, hands-on introduction to Python programming and Artificial Intelligence! Kids will create games, train AI models, and build real-world projects in a virtual, instructor-led environment designed for ages 9–12 and 13–17.",
+    "topicsCovered": [
+      "Basic Python coding",
+      "Game development with Python",
+      "How AI learns from data",
+      "Training simple ML models",
+      "Building AI-powered mini apps"
+    ],
+    "learningOutcomes": [
+      "Understand the basics of Python programming.",
+      "Build interactive games using Python.",
+      "Learn how artificial intelligence learns from data.",
+      "Train and evaluate simple machine learning models.",
+      "Create AI-powered mini applications."
+    ],
+    "targetAudience": [
+      "Kids aged 9–12",
+      "Teens aged 13–17",
+      "Beginners with no prior coding experience",
+      "Young learners interested in tech and AI",
+      "Students seeking a fun and educational summer program"
+    ]
+  },  
+  {
+    "id": 2,
     "imgPath": "/assets/images/csharp.png",
     "title": "Full Stack Development with C#",
     "enrolled": "150+",
@@ -37,7 +68,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": 3,
     "imgPath": "/assets/images/python.png",
     "title": "Full Stack Development with Python",
     "enrolled": "200+",
@@ -71,7 +102,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "imgPath": "/assets/images/java.png",
     "title": "Full Stack Development with Java",
     "enrolled": "180+",
@@ -105,7 +136,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "imgPath": "/assets/images/devops.png",
     "title": "DevOps Fundamentals",
     "enrolled": "220+",
@@ -138,7 +169,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": 6,
     "imgPath": "/assets/images/ai.png",
     "title": "AI Essentials",
     "enrolled": "300+",
@@ -168,7 +199,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "imgPath": "/assets/images/cloud.png",
     "title": "Cloud Computing",
     "enrolled": "250+",
@@ -201,7 +232,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "imgPath": "/assets/images/csharp.png",
     "title": "Backend Web Development with C#/.Net",
     "enrolled": "180+",
@@ -235,7 +266,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "imgPath": "/assets/images/python.png",
     "title": "Backend Web Development with Python",
     "enrolled": "220+",
@@ -268,7 +299,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "imgPath": "/assets/images/node.png",
     "title": "Backend Web Development with Node.js",
     "enrolled": "200+",
@@ -300,7 +331,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "imgPath": "/assets/images/react.png",
     "title": "Frontend Development with React/Next.js",
     "enrolled": "250+",
@@ -331,7 +362,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 12,
     "imgPath": "/assets/images/data.png",
     "title": "Data Analytics",
     "enrolled": "280+",
@@ -364,7 +395,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 13,
     "imgPath": "/assets/images/pm.png",
     "title": "Product Management: Developing and Launching Successful Products",
     "enrolled": "150+",
