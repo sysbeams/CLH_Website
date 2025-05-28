@@ -14,8 +14,8 @@ const CourseDetails = () => {
 
     useEffect(() => {
         const parts = pathname.split("/");
-        const id = parts[parts.length - 1];
-        const activeCourse = courses.find(c => c.id == id);
+        const url = parts[parts.length - 1];
+        const activeCourse = courses.find(c => c.url == url);
         setCourse(activeCourse);
     }, [pathname])
     return (

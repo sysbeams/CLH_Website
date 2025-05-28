@@ -21,7 +21,7 @@ const CourseList = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                     {
                         courses.map(c =>
-                            <CourseCard key={Math.random() * 9} id={c.id} imgPath={c.imgPath} title={c.title} price={c.price} />
+                            <CourseCard  key={Math.random() * 9} url={c.url} imgPath={c.imgPath} title={c.title} price={c.price} />
                         )
                     }
                 </div>

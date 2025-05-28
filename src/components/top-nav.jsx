@@ -25,86 +25,6 @@ const TopNav = () => {
 
   return (
     <>
-      <style jsx>{`
-        @keyframes pulse-glow {
-          0%,
-          100% {
-            transform: scale(1);
-            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-          }
-          50% {
-            transform: scale(1.05);
-            box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-          }
-        }
-
-        @keyframes shake-bounce {
-          0%,
-          20%,
-          50%,
-          80%,
-          100% {
-            transform: translateY(0) translateX(0);
-          }
-          10% {
-            transform: translateY(-3px) translateX(-1px);
-          }
-          30% {
-            transform: translateY(-2px) translateX(1px);
-          }
-          40% {
-            transform: translateY(-4px) translateX(-1px);
-          }
-          60% {
-            transform: translateY(-2px) translateX(1px);
-          }
-          70% {
-            transform: translateY(-3px) translateX(0);
-          }
-        }
-
-        @keyframes gradient-shift {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-        .register-btn-mobile {
-          animation: pulse-glow 2s infinite;
-          background: linear-gradient(-45deg, #011629);
-          background-size: 400% 400%;
-          animation: pulse-glow 2s infinite, gradient-shift 3s ease infinite;
-        }
-
-        .register-btn-mobile:hover {
-          animation-play-state: paused;
-          transform: scale(1.05);
-          transition: transform 0.2s ease;
-        }
-
-        .arrow-wiggle {
-          animation: arrow-wiggle 1s infinite;
-        }
-
-        @keyframes arrow-wiggle {
-          0%,
-          100% {
-            transform: translateX(0);
-          }
-          25% {
-            transform: translateX(3px);
-          }
-          75% {
-            transform: translateX(-1px);
-          }
-        }
-      `}</style>
-
       <div className="w-full px-[20px] md:px-[50px] flex items-center justify-between my-[15px] md:my-[30px] relative">
         <div className="hidden md:block">
           <Link href="/">
@@ -195,10 +115,10 @@ const TopNav = () => {
             </button>
             <button
               onClick={() => setIsOpen(true)}
-              className="register-btn-mobile h-full px-[30px] custom-border text-[15px] text-white font-[700] flex items-center justify-center gap-2 relative z-10"
+              className="h-full px-[30px] animate-pulse custom-border bg-primary text-[15px] text-white font-[600] flex items-center justify-center gap-2"
             >
-              <span>Register Now!</span>
-              <FaArrowRightLong size={20} className="arrow-wiggle" />
+              <span>Register</span>
+              <FaArrowRightLong size={20} />
             </button>
           </div>
         </div>
