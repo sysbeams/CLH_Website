@@ -2,6 +2,7 @@
   {
     "id": 1,
     "imgPath": "/assets/images/summer.png",
+    "url": "summer-coding-coaching",
     "title": "Virtual Summer Coding Coaching for Kids",
     "enrolled": "150+",
     "lectures": "Python and AI",
@@ -32,6 +33,7 @@
   },  
   {
     "id": 2,
+    "url": "full-stack-development-csharp",
     "imgPath": "/assets/images/csharp.png",
     "title": "Full Stack Development with C#",
     "enrolled": "150+",
@@ -69,6 +71,7 @@
   },
   {
     "id": 3,
+    "url": "full-stack-development-python",
     "imgPath": "/assets/images/python.png",
     "title": "Full Stack Development with Python",
     "enrolled": "200+",
@@ -103,6 +106,7 @@
   },
   {
     "id": 4,
+    "url": "full-stack-development-java",
     "imgPath": "/assets/images/java.png",
     "title": "Full Stack Development with Java",
     "enrolled": "180+",
@@ -137,6 +141,7 @@
   },
   {
     "id": 5,
+    "url": "devops-fundamentals",
     "imgPath": "/assets/images/devops.png",
     "title": "DevOps Fundamentals",
     "enrolled": "220+",
@@ -170,6 +175,7 @@
   },
   {
     "id": 6,
+    "url": "ai-essentials",
     "imgPath": "/assets/images/ai.png",
     "title": "AI Essentials",
     "enrolled": "300+",
@@ -200,6 +206,7 @@
   },
   {
     "id": 7,
+    "url": "cloud-computing",
     "imgPath": "/assets/images/cloud.png",
     "title": "Cloud Computing",
     "enrolled": "250+",
@@ -233,6 +240,7 @@
   },
   {
     "id": 8,
+    "url": "backend-web-development-csharp",
     "imgPath": "/assets/images/csharp.png",
     "title": "Backend Web Development with C#/.Net",
     "enrolled": "180+",
@@ -267,6 +275,7 @@
   },
   {
     "id": 9,
+    "url": "backend-web-development-python",
     "imgPath": "/assets/images/python.png",
     "title": "Backend Web Development with Python",
     "enrolled": "220+",
@@ -300,6 +309,7 @@
   },
   {
     "id": 10,
+    "url": "backend-web-development-nodejs",
     "imgPath": "/assets/images/node.png",
     "title": "Backend Web Development with Node.js",
     "enrolled": "200+",
@@ -332,6 +342,7 @@
   },
   {
     "id": 11,
+    "url": "frontend-development-react-nextjs",
     "imgPath": "/assets/images/react.png",
     "title": "Frontend Development with React/Next.js",
     "enrolled": "250+",
@@ -363,6 +374,7 @@
   },
   {
     "id": 12,
+    "url": "data-analytics",
     "imgPath": "/assets/images/data.png",
     "title": "Data Analytics",
     "enrolled": "280+",
@@ -396,6 +408,7 @@
   },
   {
     "id": 13,
+    "url": "product-management",
     "imgPath": "/assets/images/pm.png",
     "title": "Product Management: Developing and Launching Successful Products",
     "enrolled": "150+",
